@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sunburst Chart with D3.js</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+<div id="chart"></div>
+<script>
+  const flareUrl = "{{ url_for('static', filename='BrainHealthFields.json') }}";
+</script>
+<script src="{{ url_for('static', filename='js/wheel.js') }}" ></script>
+</body>
