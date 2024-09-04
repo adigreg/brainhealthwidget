@@ -8,7 +8,10 @@
 <body>
 <div id="chart"></div>
 <script>
-  const flareUrl = "{{ url_for('static', filename='BrainHealthFields.json') }}";
+  const jsonResponse = {{ jsonData | tojson }};
+  console.log(jsonResponse)
 </script>
+<button class="condition" id="Epilepsy">Epilepsy</button>
+<button class="condition" id="Depression">Depression</button>
 <script src="{{ url_for('static', filename='js/wheel.js') }}" ></script>
 </body>

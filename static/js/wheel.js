@@ -1,186 +1,42 @@
-var theData = {
-    "name": "flare",
-    "children": [
-    {
-      "name": "Behavior",
-      "children": [
-        {
-          "name": "Substances",
-          "children": [
-            {"name": "Illicits",
-            "value": 3812 },
-            {"name": "EtOH",
-            "value": 3812 },
-            {"name": "Smoking",
-            "value": 3812 }
-          ]
-        },
-        {
-          "name": "Enrichment",
-          "children": [
-            {"name": "School",
-            "value": 3812 },
-            {"name": "Mental Activity",
-            "value": 3812 }
-          ]
-        },
-        {
-          "name": "Sleep",
-          "children": [
-            {"name": "PRO",
-            "value": 3812 }
-          ]
-        },
-        {
-          "name": "Nutrition",
-          "children": [
-            {"name": "Diet Score",
-            "value": 3812 }
-          ]
-        },
-        {
-          "name": "Activity",
-          "children": [
-            {"name": "Physical Activity",
-            "value": 3812 }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "Body",
-      "children": [
-        {
-          "name": "BMI",
-          "children": [
-            {"name": "BMI",
-            "value": 3812 }
-          ]
-        },
-        {
-          "name": "A1C",
-          "children": [
-            {"name": "A1C",
-            "value": 3812 }
-          ]
-        },
-        {
-          "name": "Lipids",
-          "children": [
-            {"name": "Lipids",
-            "value": 3812 }
-          ]
-        },
-        {
-          "name": "Blood Pressure",
-          "children": [
-            {"name": "Blood Pressure",
-            "value": 3812 }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "Genetics",
-      "children": [
-        {
-          "name": "Gene1",
-          "children": [
-            {"name": "Neuroinflammation",
-            "value": 3812 }
-          ]
-        },
-        {
-          "name": "Gene2",
-          "children": [
-            {"name": "Headache/Migrane",
-            "value": 3812 }
-          ]
-        },
-        {
-          "name": "Gene3",
-          "children": [
-            {"name": "AD",
-            "value": 3812 }
-          ]
-        },
-        {
-          "name": "Gene4",
-          "children": [
-            {"name": "Blank",
-            "value": 3812 }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "Environment",
-      "children": [
-        {
-          "name": "SES",
-          "children": [
-            {"name": "Income",
-            "value": 3812 }
-          ]
-        },
-        {
-          "name": "Race/Ethnicity",
-          "children": [
-            {"name": "Race/Ethnicity",
-            "value": 3812 }
-          ]
-        },
-        {
-          "name": "Trauma",
-          "children": [
-            {"name": "Trauma Score",
-            "value": 3812 }
-          ]
-        },
-        {
-          "name": "Safety",
-          "children": [
-            {"name": "Crime Score",
-            "value": 3812 }
-          ]
-        },
-        {
-          "name": "Air",
-          "children": [
-            {"name": "AQ Score",
-            "value": 3812 }
-          ]
-        },
-        {
-          "name": "Walk",
-          "children": [
-            {"name": "Walk Score",
-            "value": 3812 }
-          ]
-        }
-      ]
+const flareJson = {"name": "flare","children": []}
+function translateToDiagramJson() {
+  setOneChildren = []
+  for(const setOne in jsonResponse){
+    setTwoChildren = []
+    for(const setTwo in jsonResponse[setOne]){
+      setThreeChildren = []
+      for(const setThree in jsonResponse[setOne][setTwo]){
+        setThreeChildren.push({"name": setThree,"value": jsonResponse[setOne][setTwo][setThree]["score"]})
+      }
+      setTwoChildren.push({"name": setTwo, "children": setThreeChildren})
     }
-    ]
-  };
+    flareJson["children"].push({"name":setOne, "children": setTwoChildren})
+  }
+}
+translateToDiagramJson()
+
 function createZoomableSunburst(data){
     // Specify the chart’s dimensions.
     const width = 928;
     const height = width;
-    const radius = width / 6;
+    const radius = width / 8;
 
     // Create the color scale.
     const color = d3.scaleOrdinal(d3.quantize(d3.interpolateRainbow, data.children.length + 1));
 
     // Compute the layout.
     const hierarchy = d3.hierarchy(data)
-        .sum(d => d.value)
-        .sort((a, b) => b.value - a.value);
+        .sum(d => d.value) // Assigns a value to each node in the hierarchy, sum of all of the children's nodes
+        .sort((a, b) => b.value - a.value); // sorts nodes based on their values in descending order
+    // Used to compute the coordinates of each node in a hierarchical layout
+    // 2*pi represents total angle of partition (360)
+    // Hierarchy.height + 1 gives the radial size of layout
     const root = d3.partition()
         .size([2 * Math.PI, hierarchy.height + 1])
     (hierarchy);
-    root.each(d => d.current = d);
+    root.each(d => d.current = d); // Storing the current node 
 
-    // Create the arc generator.
+    // Create the arc generator. This is used to generate the svg path data for each segment of the sunburst chart
     const arc = d3.arc()
         .startAngle(d => d.x0)
         .endAngle(d => d.x1)
@@ -270,11 +126,11 @@ function createZoomableSunburst(data){
     }
 
     function arcVisible(d) {
-    return d.y1 <= 3 && d.y0 >= 1 && d.x1 > d.x0;
+    return d.y1 <= 4 && d.y0 >= 1 && d.x1 > d.x0;
     }
 
     function labelVisible(d) {
-    return d.y1 <= 3 && d.y0 >= 1 && (d.y1 - d.y0) * (d.x1 - d.x0) > 0.03;
+    return d.y1 <= 4 && d.y0 >= 1 && (d.y1 - d.y0) * (d.x1 - d.x0) > 0.03;
     }
 
     function labelTransform(d) {
@@ -282,6 +138,26 @@ function createZoomableSunburst(data){
     const y = (d.y0 + d.y1) / 2 * radius;
     return `rotate(${x - 90}) translate(${y},0) rotate(${x < 180 ? 0 : 180})`;
     }
+
     document.body.appendChild(svg.node());
 };
-createZoomableSunburst(theData);
+const conditions_to_fields = {"Epilepsy":["Enrichment","blood pressure","SES"]}
+function onConditionClick(event) {
+  d3.select("svg").selectAll("path").filter(d => {
+    return conditions_to_fields[event.target.id].includes(d.data.name) ||
+      d.descendants().some(descendant => conditions_to_fields[event.target.id].includes(descendant.data.name));
+  }).style("stroke","green").style("stroke-weight","10px").raise()
+}
+function onConditionOut(event) {
+  d3.select("svg").selectAll("path").filter(d => {
+    return conditions_to_fields[event.target.id].includes(d.data.name) ||
+    d.descendants().some(descendant => conditions_to_fields[event.target.id].includes(descendant.data.name));
+  }).style("stroke","none")
+
+}
+createZoomableSunburst(flareJson);
+var inputs = document.getElementsByClassName("condition");
+for(var i = 0; i < inputs.length; i++){
+    inputs[i].addEventListener("mouseover", onConditionClick);
+    inputs[i].addEventListener("mouseout", onConditionOut);
+}
