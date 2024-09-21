@@ -4,14 +4,57 @@
     <meta charset="UTF-8">
     <title>Sunburst Chart with D3.js</title>
     <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+      /* Style for the container */
+      #container {
+          display: flex;
+          align-items: center; /* Align items to the top */
+          justify-content: flex-start; /* Align items to the left */
+      }
+
+      /* Style for the conditions section */
+      #conditions {
+          margin-right: 20px; /* Add space between conditions and SVG */
+          width: 200px; /* Set a fixed width for the condition buttons */
+      }
+
+      /* Style for the condition buttons */
+      .condition {
+          display: block; /* Make buttons stack vertically */
+          width: 100%; /* Make buttons take full width of the container */
+          margin-bottom: 10px; /* Add some space between buttons */
+          padding: 10px;
+          background-color: #f0f0f0;
+          border: 1px solid #ccc;
+          cursor: pointer;
+      }
+
+      /* Style for the SVG section */
+      #svg {
+          flex-grow: 1; /* Allow the SVG container to grow and take the remaining space */
+      }
+
+      /* Optional: Style for SVG */
+      svg {
+          width: 100%; /* Make SVG take full width of its container */
+          height: 900px; /* Set a fixed height */
+      }
+  </style>
 </head>
 <body>
+<h1>Sunburst Chart With D3</h1>
 <div id="chart"></div>
 <script>
   const jsonResponse = {{ jsonData | tojson }};
   console.log(jsonResponse)
 </script>
-<button class="condition" id="Epilepsy">Epilepsy</button>
-<button class="condition" id="Depression">Depression</button>
+<div id="container">
+<div id="conditions">
+  <button class="condition" id="Epilepsy">Epilepsy</button>
+  <button class="condition" id="Depression">Depression</button>
+</div>
+<div id="svg">
+</div>
+</div>
 <script src="{{ url_for('static', filename='js/wheel.js') }}" ></script>
 </body>

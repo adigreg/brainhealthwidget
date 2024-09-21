@@ -22,5 +22,16 @@ def hello_world():
             if row['Set2'] not in categories_map[row['Set1']]:
                 categories_map[row['Set1']][row['Set2']] = {}
             if row['Set3'] not in categories_map[row['Set1']][row['Set2']]:
-                categories_map[row['Set1']][row['Set2']][row['Set3']] = {"score": row['Score'], "source": row['Source']}
+                categories_map[row['Set1']][row['Set2']][row['Set3']] = {"severity":getSeverity(row['Value']),"raw_value": row['Value'], "source": row['Source']}
     return render_template('index.html',jsonData=categories_map)
+
+# Could return an opacity from 0 to 1 in increments of 0.2 based 
+# on  
+def getSeverity(rawValue):
+    rawValue = int(rawValue)
+    if rawValue > 80:
+        return 0.6
+    elif rawValue > 40:
+        return 0.4
+    else:
+        return 0.2
