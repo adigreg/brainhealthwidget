@@ -9,7 +9,7 @@ function translateToDiagramJson() {
       let maxSetThreeSeverity = 0
       for(const setThree in jsonResponse[setOne][setTwo]){
         maxSetThreeSeverity = Math.max(maxSetThreeSeverity,jsonResponse[setOne][setTwo][setThree]["severity"])
-        setThreeChildren.push({"name": setThree,"value": jsonResponse[setOne][setTwo][setThree]["raw_value"],"severity": jsonResponse[setOne][setTwo][setThree]["severity"]})
+        setThreeChildren.push({"name": setThree,"size": jsonResponse[setOne][setTwo][setThree]["raw_value"],"value": 1,"severity": jsonResponse[setOne][setTwo][setThree]["severity"]})
       }
       setTwoChildren.push({"name": setTwo, "children": setThreeChildren, "severity": maxSetThreeSeverity})
       maxSetTwoSeverity = Math.max(maxSetTwoSeverity,maxSetThreeSeverity)
@@ -21,7 +21,7 @@ translateToDiagramJson()
 
 
 class wheel {
-    static conditions_to_fields = {"Epilepsy":["a1c","Smoking","Neuroinflammation"]}
+    static conditions_to_fields = {"Epilepsy":["a1c","Smoking","Neuroinflammation"],"Depression":["hearing","lipids","PRO"]}
     constructor(data){
         this.data = data;
         this.width = 900;
@@ -66,6 +66,19 @@ class wheel {
         return `rotate(${x - 90}) translate(${y},0) rotate(${x < 180 ? 0 : 180})`;
     }
 
+    color(pathData){
+        let score = pathData.severity
+        if(score == 0){
+            return "#cccccc"
+        } else if (score <= 0.2){
+            return "#accbff"
+        } else if (score <= 0.4){
+            return "#92bbff"
+        } else {
+            return "#4188ff"
+        }
+    }
+
     generateSvg(){
         const arc = d3.arc()
         .startAngle(d => d.x0)
@@ -80,14 +93,16 @@ class wheel {
         .style("font", "10px sans-serif");
 
         // Append the arcs.
-        const color = d3.scaleOrdinal(d3.quantize(d3.interpolateRainbow, this.data.children.length + 1));
+        // const color = d3.scaleOrdinal(d3.quantize(d3.interpolateRainbow, this.data.children.length + 1));
         console.log("new root ",this.root)
         const path = svg.append("g")
         .selectAll("path")
         .data(this.root.descendants().slice(1))
         .join("path")
-            .attr("fill", d => { while (d.depth > 1) d = d.parent; return color(d.data.name); })
+            .attr("fill", d => { while (d.depth > 1) d = d.parent; return this.color(d.data); })
             .attr("fill-opacity", d => d.data.severity)
+            .attr("stroke","grey")
+            .attr("stroke-width","1px")
             .attr("pointer-events", d => this.arcVisible(d.current) ? "auto" : "none")
             .attr("d", d => arc(d.current));
 
@@ -98,7 +113,7 @@ class wheel {
 
         const format = d3.format(",d");
         path.append("title")
-            .text(d => `${d.ancestors().map(d => d.data.name).reverse().join("/")}\n${format(d.value)}`);
+            .text(d => `${d.ancestors().map(d => d.data.name).reverse().join("/")}\n${format(d.data.size)}`);
 
         const label = svg.append("g")
             .attr("pointer-events", "none")
@@ -108,6 +123,8 @@ class wheel {
         .data(this.root.descendants().slice(1))
         .join("text")
             .attr("dy", "0.35em")
+            .attr("fill","black")
+            .attr("font-size","9px")
             .attr("fill-opacity", d => +this.labelVisible(d.current))
             .attr("transform", d => this.labelTransform(d.current))
             .text(d => d.data.name);
@@ -143,7 +160,7 @@ class wheel {
             .filter(function(d) {
             return +this.getAttribute("fill-opacity") || this.arcVisible(d.target);
             })
-            .attr("fill-opacity", d => this.arcVisible(d.target) ? (d.children ? 0.6 : 0.4) : 0)
+            .attr("fill-opacity", d => d.data.severity)
             .attr("pointer-events", d => this.arcVisible(d.target) ? "auto" : "none") 
 
             .attrTween("d", d => () => arc(d.current));
@@ -158,11 +175,20 @@ class wheel {
         elem.appendChild(svg.node());
     }
 
+    getPathsForHover(d) {
+        return wheel.conditions_to_fields[event.target.id].includes(d.data.name) ||
+        d.descendants().some(descendant => wheel.conditions_to_fields[event.target.id].includes(descendant.data.name))
+    }
+
     onConditionMouseOver(event) {
-            d3.select("svg").selectAll("path").filter(d => {
-            return !wheel.conditions_to_fields[event.target.id].includes(d.data.name) &&
-                !d.descendants().some(descendant => wheel.conditions_to_fields[event.target.id].includes(descendant.data.name));
-            }).style("fill","grey");
+            // d3.select("svg").selectAll("path")
+            // .filter(d => this.getPathsForHover(d))
+            // .attr("stroke", "grey")
+            // .attr("stroke-width", "8px");
+
+            d3.select("svg").selectAll("path")
+            .filter(d => !this.getPathsForHover(d))
+            .style("fill","white").style("fill-opacity","0.4");
       }
 
     onConditionOut(event) {

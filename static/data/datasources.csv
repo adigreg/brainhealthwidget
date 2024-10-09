@@ -5,29 +5,31 @@ Genetics,Set 1,Stroke,12,23andme
 Genetics,Set 1,Cardiometabolic,12,23andme
 Genetics,Set 2,Epilepsy,12,23andme
 Genetics,Set 3,Dementia,18,23andme
-Genetics,Set 3,AD,87,23andme
-Genetics,Set 4,Schizophrenia/psychosis,87,23andme
-Genetics,Set 5,Headache/migraine,87,23andme
-Genetics,Set 6,Neuroinflammation,87,23andme
-Behavior,Activity,physical activity/athletics,88,PRO
-Behavior,Nutrition,diet score,88,PRO
-Behavior,Sleep,PRO,88,PRO
-Behavior,Substances,Smoking,88,EHR
-Behavior,Substances,EtOH,88,EHR
-Behavior,Substances,Illicits,88,EHR
-Behavior,Enrichment,Mental activity,88,PRO
-Behavior,Enrichment,School,88,EHR
-Behavior,Enrichment,Athletics,88,PRO
-Environment,Walk,walk score,88,zip to shane
-Environment,Air,AQ score,88,zip to shane
-Environment,Safety,crime score,88,zip to shane
-Environment,trauma,trauma,88,PRO
-Environment,race/ethnicity,race/ethnicity,88,EHR
-Environment,SES,income,88,"for now, zip to shane for neighborhood"
-Body,BMI,bmi,86,EHR
-Body,A1c,a1c,86,EHR
-Body,lipids,lipids,86,EHR
-Body,blood pressure,bp,86,EHR
+Genetics,Set 3,AD,30,23andme
+Genetics,Set 4,Schizophrenia/psychosis,30,23andme
+Genetics,Set 5,Headache/migraine,30,23andme
+Genetics,Set 6,Neuroinflammation,30,23andme
+Behavior,Activity,physical activity/athletics,100,PRO
+Behavior,Nutrition,diet score,2,PRO
+Behavior,Sleep,Sleep,8,PRO
+Behavior,Substances,Smoking,3,EHR
+Behavior,Substances,EtOH,3,EHR
+Behavior,Substances,Illicits,30,EHR
+Behavior,Enrichment,Mental activity,30,PRO
+Behavior,Enrichment,School,30,EHR
+Behavior,Enrichment,Athletics,39,PRO
+Environment,Walk,walk score,50,zip to shane
+Environment,Air,AQ score,50,zip to shane
+Environment,Safety,crime score,50,zip to shane
+Environment,trauma,trauma,50,PRO
+Environment,race/ethnicity,race/ethnicity,50,EHR
+Environment,SES,income,47,"for now, zip to shane for neighborhood"
+Body,Cholesterol,Cholesterol,195,EHR
+Body,BMI,BMI,18,EHR
+Body,Blood Sugar,A1c,6.2,EHR
+Body,lipids,lipids,81,EHR
+Body,blood pressure,Diastolic,70,EHR
+Body,blood pressure,Systolic,120,EHR
 Functional tests,Gait,walk,23,-
 Functional tests,Cognition,tabcat,23,-
 Functional tests,Vision,va,23,-
