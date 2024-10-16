@@ -1,15 +1,17 @@
+import { getSeverity } from "./brainhealthscores.js"
+
 const flareJson = {"name": "flare","children": []}
 function translateToDiagramJson() {
-  setOneChildren = []
   for(const setOne in jsonResponse){
-    setTwoChildren = []
+    let setTwoChildren = []
     let maxSetTwoSeverity = 0
     for(const setTwo in jsonResponse[setOne]){
-      setThreeChildren = []
+      let setThreeChildren = []
       let maxSetThreeSeverity = 0
       for(const setThree in jsonResponse[setOne][setTwo]){
-        maxSetThreeSeverity = Math.max(maxSetThreeSeverity,jsonResponse[setOne][setTwo][setThree]["severity"])
-        setThreeChildren.push({"name": setThree,"size": jsonResponse[setOne][setTwo][setThree]["raw_value"],"value": 1,"severity": jsonResponse[setOne][setTwo][setThree]["severity"]})
+        let severity = getSeverity(setThree,jsonResponse[setOne][setTwo][setThree]["raw_value"])
+        maxSetThreeSeverity = Math.max(maxSetThreeSeverity,severity)
+        setThreeChildren.push({"name": setThree,"size": jsonResponse[setOne][setTwo][setThree]["raw_value"],"value": 1,"severity": getSeverity(setThree,jsonResponse[setOne][setTwo][setThree]["raw_value"])})
       }
       setTwoChildren.push({"name": setTwo, "children": setThreeChildren, "severity": maxSetThreeSeverity})
       maxSetTwoSeverity = Math.max(maxSetTwoSeverity,maxSetThreeSeverity)
