@@ -1,37 +1,13 @@
-Set1,Set2,Set3,Value,Source
-Genetics,global,combined,12,23andme
-Genetics,Ancestry,ancestry,12,23andme
-Genetics,Set 1,Stroke,12,23andme
-Genetics,Set 1,Cardiometabolic,12,23andme
-Genetics,Set 2,Epilepsy,12,23andme
-Genetics,Set 3,Dementia,18,23andme
-Genetics,Set 3,AD,30,23andme
-Genetics,Set 4,Schizophrenia/psychosis,30,23andme
-Genetics,Set 5,Headache/migraine,30,23andme
-Genetics,Set 6,Neuroinflammation,30,23andme
-Behavior,Activity,physical activity/athletics,100,PRO
-Behavior,Nutrition,diet score,2,PRO
-Behavior,Sleep,Sleep,8,PRO
-Behavior,Substances,Smoking,3,EHR
-Behavior,Substances,EtOH,3,EHR
-Behavior,Substances,Illicits,30,EHR
-Behavior,Enrichment,Mental activity,30,PRO
-Behavior,Enrichment,School,30,EHR
-Behavior,Enrichment,Athletics,39,PRO
-Environment,Walk,walk score,50,zip to shane
-Environment,Air,AQ score,50,zip to shane
-Environment,Safety,crime score,50,zip to shane
-Environment,trauma,trauma,50,PRO
-Environment,race/ethnicity,race/ethnicity,50,EHR
-Environment,SES,income,47,"for now, zip to shane for neighborhood"
-Body,Cholesterol,Cholesterol,195,EHR
-Body,BMI,BMI,18,EHR
-Body,Blood Sugar,A1c,6.2,EHR
-Body,lipids,lipids,81,EHR
-Body,blood pressure,Diastolic,70,EHR
-Body,blood pressure,Systolic,120,EHR
-Functional tests,Gait,walk,23,-
-Functional tests,Cognition,tabcat,23,-
-Functional tests,Vision,va,23,-
-Functional tests,Hearing,hearing,23,-
-Functional tests,Other,other,23,-
+Set1,Set2,Value,Source
+Physical,Cholesterol,195,EHR
+Physical,BMI,18,EHR
+Physical,Blood Sugar,6.2,EHR
+Physical,Blood Pressure,"120/80",EHR
+Lifestyle,Aerobic Activities,150,PRO
+Lifestyle,Nutrition,2,PRO
+Lifestyle,Sleep,7,PRO
+Lifestyle,Smoking,1,EHR
+Lifestyle,Alcohol,3,EHR
+Social/Emotional,Stress,2,PRO
+Social/Emotional,Social Relationships,1,PRO
+Social/Emotional,Meaning in Life,1,PRO

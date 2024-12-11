@@ -20,7 +20,5 @@ def hello_world():
             if row['Set1'] not in categories_map:
                 categories_map[row['Set1']] = {}
             if row['Set2'] not in categories_map[row['Set1']]:
-                categories_map[row['Set1']][row['Set2']] = {}
-            if row['Set3'] not in categories_map[row['Set1']][row['Set2']]:
-                categories_map[row['Set1']][row['Set2']][row['Set3']] = {"raw_value": row['Value'], "source": row['Source']}
+                categories_map[row['Set1']][row['Set2']] = {"Value": row['Value'], "Source": row['Source']}
     return render_template('index.html',jsonData=categories_map)

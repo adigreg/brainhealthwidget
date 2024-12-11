@@ -1,29 +1,33 @@
-import { getSeverity } from "./brainhealthscores.js"
+import { BrainHealthField } from "./brainhealthscores.js"
+
+const ELIGIBLE_CONDITIONS = ["Stroke","Dementia"]
 
 const flareJson = {"name": "flare","children": []}
+let brainHealthScoreFinal = 0
 function translateToDiagramJson() {
+  let brainHealthScore = 0
   for(const setOne in jsonResponse){
     let setTwoChildren = []
     let maxSetTwoSeverity = 0
+    let setTwoScore = 0
     for(const setTwo in jsonResponse[setOne]){
-      let setThreeChildren = []
-      let maxSetThreeSeverity = 0
-      for(const setThree in jsonResponse[setOne][setTwo]){
-        let severity = getSeverity(setThree,jsonResponse[setOne][setTwo][setThree]["raw_value"])
-        maxSetThreeSeverity = Math.max(maxSetThreeSeverity,severity)
-        setThreeChildren.push({"name": setThree,"size": jsonResponse[setOne][setTwo][setThree]["raw_value"],"value": 1,"severity": getSeverity(setThree,jsonResponse[setOne][setTwo][setThree]["raw_value"])})
-      }
-      setTwoChildren.push({"name": setTwo, "children": setThreeChildren, "severity": maxSetThreeSeverity})
-      maxSetTwoSeverity = Math.max(maxSetTwoSeverity,maxSetThreeSeverity)
+        let setTwoData = jsonResponse[setOne][setTwo]
+        let brainHealthObject = new BrainHealthField(setTwo,setTwoData["Value"],setTwoData["Source"])
+        let severity = brainHealthObject.severity
+        let score = parseInt(brainHealthObject.score)
+        maxSetTwoSeverity = Math.max(maxSetTwoSeverity,severity)
+        setTwoScore += score
+        setTwoChildren.push({"name": setTwo,"size": setTwoData["Value"],"value": 1,"severity": severity,"score":score})
     }
-    flareJson["children"].push({"name":setOne, "children": setTwoChildren, "severity": maxSetTwoSeverity})
-  }
+    flareJson["children"].push({"name":setOne, "children": setTwoChildren, "severity": maxSetTwoSeverity,"score":setTwoScore})
+    brainHealthScore += setTwoScore
+}
+ brainHealthScoreFinal = brainHealthScore;
 }
 translateToDiagramJson()
 
 
 class wheel {
-    static conditions_to_fields = {"Epilepsy":["a1c","Smoking","Neuroinflammation"],"Depression":["hearing","lipids","PRO"]}
     constructor(data){
         this.data = data;
         this.width = 900;
@@ -50,7 +54,8 @@ class wheel {
     }
 
     computeDataHierarchyCond(condition){
-        const newRoot = this.root.descendants().filter(d => d.depth > 0 && wheel.conditions_to_fields[condition].includes(d.data.name))
+        //  && wheel.conditions_to_fields[condition].includes(d.data.name)
+        const newRoot = this.root.descendants().filter(d => d.depth > 0)
         this.root = newRoot
     }
 
@@ -70,7 +75,7 @@ class wheel {
 
     color(pathData){
         let score = pathData.severity
-        if(score == 0){
+        if(score == 2 || score == 3){
             return "#cccccc"
         } else if (score <= 0.2){
             return "#accbff"
@@ -178,8 +183,9 @@ class wheel {
     }
 
     getPathsForHover(d) {
-        return wheel.conditions_to_fields[event.target.id].includes(d.data.name) ||
-        d.descendants().some(descendant => wheel.conditions_to_fields[event.target.id].includes(descendant.data.name))
+        return true;
+        // return wheel.conditions_to_fields[event.target.id].includes(d.data.name) ||
+        // d.descendants().some(descendant => wheel.conditions_to_fields[event.target.id].includes(descendant.data.name))
     }
 
     onConditionMouseOver(event) {
@@ -203,9 +209,13 @@ class wheel {
 }
 
 const wheelVar = new wheel(flareJson);
-var inputs = document.getElementsByClassName("condition");
-for(var i = 0; i < inputs.length; i++){
-    inputs[i].addEventListener("click", wheelVar.onConditionClick);
-    inputs[i].addEventListener("mouseover", wheelVar.onConditionMouseOver);
-    inputs[i].addEventListener("mouseout", wheelVar.onConditionOut);
+var conditionsContainer = document.getElementById("conditions")
+for(let condition of ELIGIBLE_CONDITIONS){
+    const button = document.createElement('button')
+    button.textContent = condition + " Score " + brainHealthScoreFinal + "/21"
+    button.className = "condition"
+    button.addEventListener("click", wheelVar.onConditionClick);
+    button.addEventListener("mouseover", wheelVar.onConditionMouseOver);
+    button.addEventListener("mouseout", wheelVar.onConditionOut);
+    conditionsContainer.appendChild(button);
 }
