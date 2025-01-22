@@ -1,0 +1,183 @@
+{
+    "fit_data": {
+        "survey_responses": {
+            "total_falls": {
+                "value": "NA",
+                "display_name": "<b>Falls</b>",
+                "controls_stats_type": "firstGroup",
+                "color": "#848484",
+                "action": "<b></b>",
+                "variable_max": 2.0
+            },
+            "severe_falls": {
+                "value": "NA",
+                "display_name": "Severe",
+                "controls_stats_type": "firstGroup",
+                "color": "#848484",
+                "action": "",
+                "variable_max": 1.0
+            },
+            "total_nearfalls": {
+                "value": "NA",
+                "display_name": "Near in past 6 months",
+                "controls_stats_type": "firstGroup",
+                "color": "#848484",
+                "action": "",
+                "variable_max": 1.0
+            },
+            "abc_percent_score": {
+                "value": "Present",
+                "display_name": "<b>Fear of falls</b>",
+                "controls_stats_type": "secondGroup",
+                "color": "#ff5252",
+                "action": "<b>Referral to Neurological PT</b>",
+                "variable_max": -1.0
+            },
+            "vision_total_score": {
+                "value": "1",
+                "display_name": "Vision (FS)",
+                "controls_stats_type": "thirdGroup",
+                "color": "darkgreen",
+                "action": "",
+                "variable_max": 2.0
+            },
+            "predss": {
+                "value": "3",
+                "display_name": "<b>Disability (prEDSS</b>",
+                "controls_stats_type": "fifthGroup",
+                "color": "darkgreen",
+                "action": "<b>Watch</b>",
+                "variable_max": 4.0
+            },
+            "mfis_score": {
+                "value": "23",
+                "display_name": "Fatigue (MFIS)",
+                "controls_stats_type": "thirdGroup",
+                "color": "darkgreen",
+                "action": "Watch",
+                "variable_max": 38.0
+            },
+            "blcs_total_score": {
+                "value": "1, Mild",
+                "display_name": "Urinary symptoms (BLCS)",
+                "controls_stats_type": "thirdGroup",
+                "color": "#ffa700",
+                "action": "",
+                "variable_max": -1.0
+            },
+            "psqi_final": {
+                "value": "5",
+                "display_name": "Sleep (PSQI)",
+                "controls_stats_type": "fourthGroup",
+                "color": "#ffa700",
+                "action": "Watch",
+                "variable_max": -1.0
+            },
+            "total_score": {
+                "value": "24",
+                "display_name": "<b>Walking (MSWS-12)</b>",
+                "controls_stats_type": "sixthGroup",
+                "color": "darkgreen",
+                "action": "<b></b>",
+                "variable_max": 60.0
+            },
+            "neuro_pt": {
+                "value": "No",
+                "display_name": "Seen PT in last two weeks",
+                "controls_stats_type": "sixthGroup",
+                "color": "#ff5252",
+                "action": "",
+                "variable_max": -1.0
+            },
+            "phq9_total_score_485194": {
+                "value": "14",
+                "display_name": "Depression (PHQ-9)",
+                "controls_stats_type": "fourthGroup",
+                "color": "#ffa700",
+                "action": "Evaluate suicidality, Treat (Talk therapy/CBTi,antidepressant), Psychiatry referral",
+                "variable_max": -1.0,
+                "name": "phq9_total_score_485194"
+            },
+            "Disease Duration": {
+                "value": "37 years",
+                "display_name": "Disease Duration",
+                "controls_stats_type": "seventhGroup",
+                "color": "#ff5252",
+                "action": "",
+                "variable_max": 10.0
+            },
+            "Age": {
+                "value": 45,
+                "display_name": "Age",
+                "controls_stats_type": "seventhGroup",
+                "color": "darkgreen",
+                "action": "",
+                "variable_max": 70.0
+            },
+            "sdoh": {
+                "value": "Needs Identified",
+                "display_name": "Social needs assessment",
+                "controls_stats_type": "seventhGroup",
+                "color": "#ff5252",
+                "action": "Consider referral to LICSW or patient navigator; further NMSS or MSA resources",
+                "variable_max": 1.0
+            },
+            "substance_use": {
+                "value": "Negative",
+                "display_name": "Substance Use Screen",
+                "controls_stats_type": "seventhGroup",
+                "color": "darkgreen",
+                "action": "Alcohol screen: <span style='color:darkgreen'>Not entered</span> AND Drugs of abuse screen: <span style='color:darkgreen'>Not entered</span>",
+                "variable_max": -1.0
+            },
+            "bone_density": {
+                "value": "Under 50",
+                "display_name": "Bone Density",
+                "controls_stats_type": "eigthGroup",
+                "color": "darkgreen",
+                "action": "",
+                "variable_max": 50.0
+            },
+            "tbd14": {
+                "value": "",
+                "display_name": "Physical Activity",
+                "controls_stats_type": "eigthGroup",
+                "color": "#848484",
+                "action": "Pending Fitbit Data Integration",
+                "variable_max": -2.0
+            },
+            "tbd8": {
+                "value": "",
+                "display_name": "Medication effects",
+                "controls_stats_type": "eigthGroup",
+                "color": "#848484",
+                "action": "Review medication list for potential fall contributors (BP and psychoactive meds),\n flag for PCP or pharmacy review",
+                "variable_max": -2.0
+            },
+            "tbd11": {
+                "value": "",
+                "display_name": "Other risk factors",
+                "controls_stats_type": "eigthGroup",
+                "color": "#848484",
+                "action": "Review patient log for individual contributors, such as need for safer footwear",
+                "variable_max": -2.0
+            },
+            "edss": {
+                "value": "3.5",
+                "display_name": "<b>EDSS)</b>",
+                "controls_stats_type": "fifthGroup",
+                "color": "darkgreen",
+                "action": "<b>Watch</b>",
+                "variable_max": 4.0
+            },
+            "walk_score": {
+                "value": "Car-Dependent",
+                "display_name": "Neighborhood walkability",
+                "controls_stats_type": "seventhGroup",
+                "color": "#ff5252",
+                "action": "Refer to map",
+                "variable_max": -1.0
+            }
+        }
+    }
+}

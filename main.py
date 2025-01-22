@@ -4,21 +4,30 @@ from flask import render_template
 import logging
 import os
 import csv
+import json
 import requests
 import logging
 
 app = Flask(__name__)
 
 @app.route("/")
-def hello_world():
-    file_name = 'datasources.csv'
-    file_path = os.path.join(os.getcwd(), 'static', "data", file_name)
-    categories_map = {}
-    with open(file_path, 'r',encoding="Windows-1252") as csvfile:
-        csv_reader = csv.DictReader(csvfile)
-        for row in csv_reader:
-            if row['Set1'] not in categories_map:
-                categories_map[row['Set1']] = {}
-            if row['Set2'] not in categories_map[row['Set1']]:
-                categories_map[row['Set1']][row['Set2']] = {"Value": row['Value'], "Source": row['Source']}
-    return render_template('index.html',jsonData=categories_map)
+def main():
+    ehrData = getEhrData()
+    redcapData = getRedcapData()
+    return render_template('index.html',ehrResult=ehrData,redcapResult=redcapData)
+
+@app.route("/getEhrData")
+def getEhrData():
+    ehr_result = 'ehr_result.json'
+    return parseAndReturnJsonResult(ehr_result)
+
+@app.route("/getRedcapData")
+def getRedcapData():
+    redcap_result = 'redcap_study.json'
+    return parseAndReturnJsonResult(redcap_result)
+
+def parseAndReturnJsonResult(file_name):
+    file_path = os.path.join(os.getcwd(), 'static', "data", redcap_result)
+    with open(file_path) as json_data:
+        d = json.load(json_data)
+        return d

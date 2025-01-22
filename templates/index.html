@@ -3,6 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script>
+        var ehrData = {{ ehrResult | tojson }};
+        var redcapData = {{ redcapResult | tojson }};
+    
+        console.log("EHR Data:", ehrData);
+        console.log("REDCap Data:", redcapData);
+    </script>
     <style>
       /* Style for the container */
       #container {
@@ -43,10 +50,6 @@
 </head>
 <body>
 <div id="chart"></div>
-<script>
-  const jsonResponse = {{ jsonData | tojson }};
-  console.log(jsonResponse)
-</script>
 <div id="container">
 <div id="conditions">
 </div>
