@@ -7,27 +7,18 @@ import csv
 import json
 import requests
 import logging
+from './transformjson.py' import transform_json
 
 app = Flask(__name__)
 
 @app.route("/")
 def main():
-    ehrData = getEhrData()
-    redcapData = getRedcapData()
-    return render_template('index.html',ehrResult=ehrData,redcapResult=redcapData)
+    patientData = getPatientData()
+    return render_template('index.html',patientData=patientData)
 
-@app.route("/getEhrData")
-def getEhrData():
-    ehr_result = 'ehr_result.json'
-    return parseAndReturnJsonResult(ehr_result)
-
-@app.route("/getRedcapData")
-def getRedcapData():
-    redcap_result = 'redcap_study.json'
-    return parseAndReturnJsonResult(redcap_result)
-
-def parseAndReturnJsonResult(file_name):
-    file_path = os.path.join(os.getcwd(), 'static', "data", redcap_result)
+def getPatientData():
+    file_path = os.path.join(os.getcwd(), 'static', "data", "ms_fit_results.json")
     with open(file_path) as json_data:
         d = json.load(json_data)
+        transform_json(d)
         return d

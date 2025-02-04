@@ -2,7 +2,7 @@
     "fit_data": {
         "survey_responses": {
             "total_falls": {
-                "value": "NA",
+                "value": "2",
                 "display_name": "<b>Falls</b>",
                 "controls_stats_type": "firstGroup",
                 "color": "#848484",
@@ -10,7 +10,7 @@
                 "variable_max": 2.0
             },
             "severe_falls": {
-                "value": "NA",
+                "value": "0",
                 "display_name": "Severe",
                 "controls_stats_type": "firstGroup",
                 "color": "#848484",
@@ -18,7 +18,7 @@
                 "variable_max": 1.0
             },
             "total_nearfalls": {
-                "value": "NA",
+                "value": "1",
                 "display_name": "Near in past 6 months",
                 "controls_stats_type": "firstGroup",
                 "color": "#848484",
@@ -71,7 +71,7 @@
                 "controls_stats_type": "fourthGroup",
                 "color": "#ffa700",
                 "action": "Watch",
-                "variable_max": -1.0
+                "variable_max": 10.0
             },
             "total_score": {
                 "value": "24",
