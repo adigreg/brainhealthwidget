@@ -1,30 +1,7 @@
-import { BrainHealthField } from "./brainhealthscores.js"
-
 const ELIGIBLE_CONDITIONS = ["Stroke","Dementia"]
+const conditions_to_fields = []
 
-const flareJson = {"name": "flare","children": []}
-let brainHealthScoreFinal = 0
-function translateToDiagramJson() {
-  let brainHealthScore = 0
-  for(const setOne in jsonResponse){
-    let setTwoChildren = []
-    let maxSetTwoSeverity = 0
-    let setTwoScore = 0
-    for(const setTwo in jsonResponse[setOne]){
-        let setTwoData = jsonResponse[setOne][setTwo]
-        let brainHealthObject = new BrainHealthField(setTwo,setTwoData["Value"],setTwoData["Source"])
-        let severity = brainHealthObject.severity
-        let score = parseInt(brainHealthObject.score)
-        maxSetTwoSeverity = Math.max(maxSetTwoSeverity,severity)
-        setTwoScore += score
-        setTwoChildren.push({"name": setTwo,"size": setTwoData["Value"],"value": 1,"severity": severity,"score":score})
-    }
-    flareJson["children"].push({"name":setOne, "children": setTwoChildren, "severity": maxSetTwoSeverity,"score":setTwoScore})
-    brainHealthScore += setTwoScore
-}
- brainHealthScoreFinal = brainHealthScore;
-}
-translateToDiagramJson()
+const flareJson = patientFlareData;
 
 
 class wheel {
@@ -39,24 +16,19 @@ class wheel {
         this.onConditionOut = this.onConditionOut.bind(this)
         this.onConditionMouseOver = this.onConditionMouseOver.bind(this)
         this.onConditionClick = this.onConditionClick.bind(this)
-        this.computeDataHierarchyCond = this.computeDataHierarchyCond.bind(this)
     }
 
     computeDataHierarchy(){
         const hierarchy = d3.hierarchy(this.data)
-        .sum(d => d.value)
-        .sort((a, b) => b.value - a.value);
+            .count()  // Gives each leaf an equal weight
+            .sort((a, b) => b.height - a.height); // Sort by depth for consistent rendering
+    
         const root = d3.partition()
-        .size([2 * Math.PI, hierarchy.height + 1])
-        (hierarchy);
+            .size([2 * Math.PI, hierarchy.height + 1]) // Keep radial and depth layout
+            (hierarchy);
+    
         root.each(d => d.current = d);
-        return root
-    }
-
-    computeDataHierarchyCond(condition){
-        //  && wheel.conditions_to_fields[condition].includes(d.data.name)
-        const newRoot = this.root.descendants().filter(d => d.depth > 0)
-        this.root = newRoot
+        return root;
     }
 
     arcVisible(d) {
@@ -74,13 +46,8 @@ class wheel {
     }
 
     color(pathData){
-        let score = pathData.severity
-        if(score == 2 || score == 3){
-            return "#cccccc"
-        } else if (score <= 0.2){
+        if(!pathData.is_bad){
             return "#accbff"
-        } else if (score <= 0.4){
-            return "#92bbff"
         } else {
             return "#4188ff"
         }
@@ -101,13 +68,12 @@ class wheel {
 
         // Append the arcs.
         // const color = d3.scaleOrdinal(d3.quantize(d3.interpolateRainbow, this.data.children.length + 1));
-        console.log("new root ",this.root)
         const path = svg.append("g")
         .selectAll("path")
         .data(this.root.descendants().slice(1))
         .join("path")
             .attr("fill", d => { while (d.depth > 1) d = d.parent; return this.color(d.data); })
-            .attr("fill-opacity", d => d.data.severity)
+            .attr("fill-opacity", d => d.data.is_bad ? 0.8 : 0.2)
             .attr("stroke","grey")
             .attr("stroke-width","1px")
             .attr("pointer-events", d => this.arcVisible(d.current) ? "auto" : "none")
@@ -120,7 +86,17 @@ class wheel {
 
         const format = d3.format(",d");
         path.append("title")
-            .text(d => `${d.ancestors().map(d => d.data.name).reverse().join("/")}\n${format(d.data.size)}`);
+            .text(d => {
+                let text = `${d.data.name}`;
+                if(d.data.value){
+                    text += `\n${format(d.data.value)}`
+                    if (d.data.min !== -1) {
+                        text += `\nHealthy Range: ${format(d.data.min)} Until ${format(d.data.max)}`;
+                    }
+                    text += `\nIs Abnormal: ${format(d.data.is_bad) ? "false" : "true"}`    
+                }
+                return text;
+            });
 
         const label = svg.append("g")
             .attr("pointer-events", "none")
@@ -167,7 +143,7 @@ class wheel {
             .filter(function(d) {
             return +this.getAttribute("fill-opacity") || this.arcVisible(d.target);
             })
-            .attr("fill-opacity", d => d.data.severity)
+            .attr("fill-opacity", d => d.data.is_bad ? 0.8 : 0.2)
             .attr("pointer-events", d => this.arcVisible(d.target) ? "auto" : "none") 
 
             .attrTween("d", d => () => arc(d.current));
@@ -212,7 +188,7 @@ const wheelVar = new wheel(flareJson);
 var conditionsContainer = document.getElementById("conditions")
 for(let condition of ELIGIBLE_CONDITIONS){
     const button = document.createElement('button')
-    button.textContent = condition + " Score " + brainHealthScoreFinal + "/21"
+    button.textContent = condition + " Score " + "score value" + "/21"
     button.className = "condition"
     button.addEventListener("click", wheelVar.onConditionClick);
     button.addEventListener("mouseover", wheelVar.onConditionMouseOver);

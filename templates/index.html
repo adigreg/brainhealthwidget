@@ -4,11 +4,7 @@
     <meta charset="UTF-8">
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script>
-        var ehrData = {{ ehrResult | tojson }};
-        var redcapData = {{ redcapResult | tojson }};
-    
-        console.log("EHR Data:", ehrData);
-        console.log("REDCap Data:", redcapData);
+        var patientFlareData = {{ patientFlareData | tojson }};
     </script>
     <style>
       /* Style for the container */
