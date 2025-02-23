@@ -1,5 +1,5 @@
 const ELIGIBLE_CONDITIONS = ["Stroke","Dementia"]
-const conditions_to_fields = []
+const conditions_to_fields = {"Stroke":["systolic_bp"],"Dementia":["hearing_score"]}
 
 const flareJson = patientFlareData;
 
@@ -15,7 +15,7 @@ class wheel {
         this.generateSvg = this.generateSvg.bind(this)
         this.onConditionOut = this.onConditionOut.bind(this)
         this.onConditionMouseOver = this.onConditionMouseOver.bind(this)
-        this.onConditionClick = this.onConditionClick.bind(this)
+        this.clicked = this.clicked.bind(this)
     }
 
     computeDataHierarchy(){
@@ -46,11 +46,17 @@ class wheel {
     }
 
     color(pathData){
-        if(!pathData.is_bad){
-            return "#accbff"
-        } else {
-            return "#4188ff"
+        if(pathData.value == ""){
+            return "#ffffff"
         }
+        return "#accbff"
+    }
+
+    opacity(pathData){
+        if(pathData.is_bad){
+            return 0.8
+        }
+        return 0.4
     }
 
     generateSvg(){
@@ -67,13 +73,12 @@ class wheel {
         .style("font", "10px sans-serif");
 
         // Append the arcs.
-        // const color = d3.scaleOrdinal(d3.quantize(d3.interpolateRainbow, this.data.children.length + 1));
         const path = svg.append("g")
         .selectAll("path")
         .data(this.root.descendants().slice(1))
         .join("path")
-            .attr("fill", d => { while (d.depth > 1) d = d.parent; return this.color(d.data); })
-            .attr("fill-opacity", d => d.data.is_bad ? 0.8 : 0.2)
+            .attr("fill", d => this.color(d.data))
+            .attr("fill-opacity", d => this.opacity(d.data))
             .attr("stroke","grey")
             .attr("stroke-width","1px")
             .attr("pointer-events", d => this.arcVisible(d.current) ? "auto" : "none")
@@ -82,7 +87,7 @@ class wheel {
         // Make them clickable if they have children.
         path.filter(d => d.children)
             .style("cursor", "pointer")
-            .on("click", clicked);
+            .on("click", this.clicked);
 
         const format = d3.format(",d");
         path.append("title")
@@ -91,9 +96,9 @@ class wheel {
                 if(d.data.value){
                     text += `\n${format(d.data.value)}`
                     if (d.data.min !== -1) {
-                        text += `\nHealthy Range: ${format(d.data.min)} Until ${format(d.data.max)}`;
+                        text += `\nData Range: ${format(d.data.min)} Until ${format(d.data.max)}`;
                     }
-                    text += `\nIs Abnormal: ${format(d.data.is_bad) ? "false" : "true"}`    
+                    text += `\nIs Abnormal: ${d.data.is_bad ? "true" : "false"}`    
                 }
                 return text;
             });
@@ -106,7 +111,13 @@ class wheel {
         .data(this.root.descendants().slice(1))
         .join("text")
             .attr("dy", "0.35em")
-            .attr("fill","black")
+            .attr("fill",d => {
+                if(d.data.value == ""){
+                    return "grey"
+                } else {
+                    return "black"
+                }
+            })
             .attr("font-size","9px")
             .attr("fill-opacity", d => +this.labelVisible(d.current))
             .attr("transform", d => this.labelTransform(d.current))
@@ -117,12 +128,14 @@ class wheel {
             .attr("r", this.radius)
             .attr("fill", "none")
             .attr("pointer-events", "all")
-            .on("click", clicked);
+            .on("click", this.clicked);
+        var elem = document.getElementById("svg");
+        elem.appendChild(svg.node());
+    }
 
-        // Handle zoom on click.
-        function clicked(event, p) {
+    // Handle zoom on click.
+    clicked(event, p) {
         parent.datum(p.parent || this.root);
-
         this.root.each(d => d.target = {
             x0: Math.max(0, Math.min(1, (d.x0 - p.x0) / (p.x1 - p.x0))) * 2 * Math.PI,
             x1: Math.max(0, Math.min(1, (d.x1 - p.x0) / (p.x1 - p.x0))) * 2 * Math.PI,
@@ -143,7 +156,7 @@ class wheel {
             .filter(function(d) {
             return +this.getAttribute("fill-opacity") || this.arcVisible(d.target);
             })
-            .attr("fill-opacity", d => d.data.is_bad ? 0.8 : 0.2)
+            .attr("fill-opacity", d => this.opacity(d.data))
             .attr("pointer-events", d => this.arcVisible(d.target) ? "auto" : "none") 
 
             .attrTween("d", d => () => arc(d.current));
@@ -153,34 +166,27 @@ class wheel {
             }).transition(t)
             .attr("fill-opacity", d => +this.labelVisible(d.target))
             .attrTween("transform", d => () => this.labelTransform(d.current));
-        }
-        var elem = document.getElementById("svg");
-        elem.appendChild(svg.node());
     }
 
-    getPathsForHover(d) {
-        return true;
-        // return wheel.conditions_to_fields[event.target.id].includes(d.data.name) ||
-        // d.descendants().some(descendant => wheel.conditions_to_fields[event.target.id].includes(descendant.data.name))
+    getPathsForHover(event,d) {
+        return conditions_to_fields[event.target.id].includes(d.data.key) ||
+        d.descendants().some(descendant => conditions_to_fields[event.target.id].includes(descendant.data.key))
     }
 
     onConditionMouseOver(event) {
-            // d3.select("svg").selectAll("path")
-            // .filter(d => this.getPathsForHover(d))
-            // .attr("stroke", "grey")
-            // .attr("stroke-width", "8px");
+            d3.select("svg").selectAll("path")
+            .filter(d => this.getPathsForHover(event,d))
+            .attr("stroke", "yellow")
+            .attr("stroke-width", "6px");
 
             d3.select("svg").selectAll("path")
-            .filter(d => !this.getPathsForHover(d))
-            .style("fill","white").style("fill-opacity","0.4");
+            .filter(d => !this.getPathsForHover(event,d))
+            .style("fill","grey").style("fill-opacity","0.4");
       }
 
     onConditionOut(event) {
         d3.select("svg").remove();
         this.generateSvg();
-    }
-
-    onConditionClick(event) {
     }
 }
 
@@ -190,7 +196,8 @@ for(let condition of ELIGIBLE_CONDITIONS){
     const button = document.createElement('button')
     button.textContent = condition + " Score " + "score value" + "/21"
     button.className = "condition"
-    button.addEventListener("click", wheelVar.onConditionClick);
+    button.id = condition
+    button.addEventListener("click", wheelVar.onConditionMouseOver);
     button.addEventListener("mouseover", wheelVar.onConditionMouseOver);
     button.addEventListener("mouseout", wheelVar.onConditionOut);
     conditionsContainer.appendChild(button);

@@ -19,10 +19,12 @@ def main():
         return render_template('index.html',patientFlareData=flare_json)
 
 def compute_is_bad(data_type, value, variable_min, variable_max):
+    if value == "":
+        return False
     if data_type == "value":
-        return variable_min > value or variable_max < value
+        return int(variable_min) > int(value) or int(variable_max) < int(value)
     elif data_type == "boolean":
-        return value
+        return int(value)
     else:
         return False
 
@@ -45,7 +47,8 @@ def transform_to_flare(data):
             subset_dict[subset] = {"name": subset, "children": []}
         if name not in [val["name"] for val in subset_dict[subset]["children"]]:
             subset_dict[subset]["children"].append({
-                "name": item["display_name"],
+                "key": key,
+                "name": item["display_name"] if item["display_name"] != "" else item["parameter"],
                 "value": item["value"],
                 "min": -1 if item["data_type"] != "value" else item["min"],
                 "max": -1 if item["data_type"] != "value" else item["max"],

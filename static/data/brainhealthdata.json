@@ -133,7 +133,7 @@
                 "additional_text": ""
             },            
             "food_index_score": {
-                "value": "12",
+                "value": "",
                 "display_name": "Diet Score",
                 "category": "Behavior",
                 "subset": "Nutrition",
@@ -145,7 +145,7 @@
                 "additional_text": ""
             },            
             "psqi_final_score": {
-                "value": "99",
+                "value": "110",
                 "display_name": "Sleep Score",
                 "category": "Behavior",
                 "subset": "Sleep",
