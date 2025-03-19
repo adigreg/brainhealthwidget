@@ -1,6 +1,5 @@
 const ELIGIBLE_CONDITIONS = ["Stroke","Dementia"]
-const conditions_to_fields = {"Stroke":["systolic_bp"],"Dementia":["hearing_score"]}
-
+const impact_score_to_color = {"-3":"#0229bf","-2":"#3a80ec","-1":"#89c5fd","0":"#bcf5f9","1":"#bcf5f9","2":"#bcf5f9","3":"#bcf5f9"};
 const flareJson = patientFlareData;
 
 
@@ -45,17 +44,11 @@ class wheel {
         return `rotate(${x - 90}) translate(${y},0) rotate(${x < 180 ? 0 : 180})`;
     }
 
-    color(pathData){
-        if(pathData.value == ""){
-            return "#ffffff"
-        }
-        return "#accbff"
+    color(impact_score){
+        return impact_score_to_color[impact_score]
     }
 
     opacity(pathData){
-        if(pathData.is_bad){
-            return 0.8
-        }
         return 0.4
     }
 
@@ -77,7 +70,13 @@ class wheel {
         .selectAll("path")
         .data(this.root.descendants().slice(1))
         .join("path")
-            .attr("fill", d => this.color(d.data))
+            .attr("fill", d => {
+                if(d.data.value != null && d.data.value == ""){
+                    return "#ffffff"
+                }
+                
+                return d.data.impact_score != null ? this.color(d.data.impact_score) : this.color(d3.min(d.descendants(), node => node.data.impact_score ?? 0))
+            })
             .attr("fill-opacity", d => this.opacity(d.data))
             .attr("stroke","grey")
             .attr("stroke-width","1px")
@@ -98,7 +97,7 @@ class wheel {
                     if (d.data.min !== -1) {
                         text += `\nData Range: ${format(d.data.min)} Until ${format(d.data.max)}`;
                     }
-                    text += `\nIs Abnormal: ${d.data.is_bad ? "true" : "false"}`    
+                    text += `\nIs Abnormal: ${d.data.impact_score < 0 ? "true" : "false"}`    
                 }
                 return text;
             });
@@ -169,8 +168,7 @@ class wheel {
     }
 
     getPathsForHover(event,d) {
-        return conditions_to_fields[event.target.id].includes(d.data.key) ||
-        d.descendants().some(descendant => conditions_to_fields[event.target.id].includes(descendant.data.key))
+        return d.data.related_conditions?.includes(event.target.id) ||  d.descendants().some(descendant => descendant.data.related_conditions?.includes(event.target.id))
     }
 
     onConditionMouseOver(event) {
@@ -194,7 +192,7 @@ const wheelVar = new wheel(flareJson);
 var conditionsContainer = document.getElementById("conditions")
 for(let condition of ELIGIBLE_CONDITIONS){
     const button = document.createElement('button')
-    button.textContent = condition + " Score " + "score value" + "/21"
+    button.textContent = condition
     button.className = "condition"
     button.id = condition
     button.addEventListener("click", wheelVar.onConditionMouseOver);

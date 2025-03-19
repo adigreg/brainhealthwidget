@@ -18,21 +18,32 @@ def main():
         flare_json = transform_to_flare(d)
         return render_template('index.html',patientFlareData=flare_json)
 
-def compute_is_bad(data_type, value, variable_min, variable_max):
-    if value == "":
-        return False
+def get_impact_and_description(data_type, value, score_limits):
     if data_type == "value":
-        return int(variable_min) > int(value) or int(variable_max) < int(value)
-    elif data_type == "boolean":
-        return int(value)
-    else:
-        return False
+        numeric_val = 0
+        try:
+            numeric_val = int(value)
+        except ValueError:
+            return [0,""]
+        max_impact_score = -100
+        for score_category in score_limits:
+            if score_category["max"] == -1 or score_category["min"] == -1:
+                return [0,score_category["description"]] # scoring not appropriate for this field
+            if numeric_val >= score_category["min"] and numeric_val <= score_category["max"]:
+                return [score_category["impact_score"],score_category["description"]]
+    return [0,""]
+
+
+
+
+
+    
 
 def transform_to_flare(data):
     flare = {"name": "brainhealth", "children": []}
     category_dict = {}
     subset_dict = {}
-    
+    gender = data["gender"]
     for key, item in data["brainhealth"].items():
         category = item["category"]
         subset = item["subset"]
@@ -46,15 +57,18 @@ def transform_to_flare(data):
         if subset not in subset_dict:
             subset_dict[subset] = {"name": subset, "children": []}
         if name not in [val["name"] for val in subset_dict[subset]["children"]]:
+            impact_score, description = get_impact_and_description(item["data_type"],item["value"],item["score_limits"][gender])
             subset_dict[subset]["children"].append({
                 "key": key,
                 "name": item["display_name"] if item["display_name"] != "" else item["parameter"],
                 "value": item["value"],
-                "min": -1 if item["data_type"] != "value" else item["min"],
-                "max": -1 if item["data_type"] != "value" else item["max"],
+                "min": -1 if item["data_type"] != "value" else item["score_limits"]["total_range"][0]["min"],
+                "max": -1 if item["data_type"] != "value" else item["score_limits"]["total_range"][0]["max"],
                 "data_source": item["data_source"],
-                "is_bad": compute_is_bad(item["data_type"],item["value"],item["min"],item["max"]),
+                "impact_score": impact_score,
+                "description": description,
                 "size": 1,
+                "related_conditions": ["Stroke","Dementia"] if key == "gene_ancestry" else [],
             })
     
     for k,category_data in category_dict.items():

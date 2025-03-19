@@ -1,460 +1,1763 @@
 {
+    "gender": "male",
     "brainhealth": {
-            "gene_combined": {
-                "value": "20",
-                "display_name": "Combined",
-                "category": "Genetics",
-                "subset": "Global",
-                "parameter": "combined",
-                "min":"0",
-                "max":"100",
-                "data_type":"value",
-                "data_source": "23andMe",
-                "additional_text": ""
-            },            
-            "gene_ancestry": {
-                "value": "30",
-                "display_name": "Ancestry",
-                "category": "Genetics",
-                "subset": "Ancestry",
-                "parameter": "Ancestry",
-                "min":"0",
-                "max":"100",
-                "data_type":"value",
-                "data_source": "23andMe",
-                "additional_text": ""
-            },            
-            "gene_stroke": {
-                "value": "20",
-                "display_name": "Stroke",
-                "category": "Genetics",
-                "subset": "Set 1",
-                "parameter": "Stroke",
-                "min":"0",
-                "max":"100",
-                "data_type":"value",
-                "data_source": "23andMe",
-                "additional_text": ""
-            },            
-            "gene_cardiometabolic": {
-                "value": "40",
-                "display_name": "Cardio Metabolic",
-                "category": "Genetics",
-                "subset": "Set 1",
-                "parameter": "Cardio Metabolic",
-                "min":"0",
-                "max":"100",
-                "data_type":"value",
-                "data_source": "23andMe",
-                "additional_text": ""
-            },            
-            "gene_epilepsy": {
-                "value": "25",
-                "display_name": "Epilepsy",
-                "category": "Genetics",
-                "subset": "Set 2",
-                "parameter": "Epilepsy",
-                "min":"0",
-                "max":"100",
-                "data_type":"value",
-                "data_source": "23andMe",
-                "additional_text": ""
-            },            
-            "gene_dementia": {
-                "value": "65",
-                "display_name": "Dementia",
-                "category": "Genetics",
-                "subset": "Set 3",
-                "parameter": "Dementia",
-                "min":"0",
-                "max":"100",
-                "data_type":"value",
-                "data_source": "23andMe",
-                "additional_text": ""
-            },            
-            "gene_ad": {
-                "value": "12",
-                "display_name": "AD",
-                "category": "Genetics",
-                "subset": "Set 3",
-                "parameter": "AD",
-                "min":"0",
-                "max":"100",
-                "data_type":"value",
-                "data_source": "23andMe",
-                "additional_text": ""
-            },            
-            "gene_psychosis": {
-                "value": "14",
-                "display_name": "Schizophrenia or Psychosis",
-                "category": "Genetics",
-                "subset": "Set 4",
-                "parameter": "Schizophrenia or Psychosis",
-                "min":"0",
-                "max":"100",
-                "data_type":"value",
-                "data_source": "23andMe",
-                "additional_text": ""
-            },            
-            "gene_headache": {
-                "value": "1",
-                "display_name": "Headache or Migraine",
-                "category": "Genetics",
-                "subset": "Set 5",
-                "parameter": "Headache or Migraine",
-                "min":"0",
-                "max":"100",
-                "data_type":"value",
-                "data_source": "23andMe",
-                "additional_text": ""
-            },            
-            "gene_neruoinf": {
-                "value": "1",
-                "display_name": "Neuroinflammation",
-                "category": "Genetics",
-                "subset": "Set 6",
-                "parameter": "Neuroinflammation",
-                "min":"0",
-                "max":"100",
-                "data_type":"value",
-                "data_source": "23andMe",
-                "additional_text": ""
-            },            
-            "godin_total_score": {
-                "value": "9",
-                "display_name": "Physical Activity or Athletics",
-                "category": "Behavior",
-                "subset": "Activity",
-                "parameter": "Physical Activity or Athletics",
-                "min":"0",
-                "max":"10",
-                "data_type":"value",
-                "data_source": "redcap",
-                "additional_text": ""
-            },            
-            "food_index_score": {
-                "value": "",
-                "display_name": "Diet Score",
-                "category": "Behavior",
-                "subset": "Nutrition",
-                "parameter": "Diet Score",
-                "min":"0",
-                "max":"100",
-                "data_type":"value",
-                "data_source": "redcap",
-                "additional_text": ""
-            },            
-            "psqi_final_score": {
-                "value": "110",
-                "display_name": "Sleep Score",
-                "category": "Behavior",
-                "subset": "Sleep",
-                "parameter": "Sleep Score",
-                "min":"50",
-                "max":"100",
-                "data_type":"value",
-                "data_source": "redcap",
-                "additional_text": ""
-            },            
-            "tobacco_abuse": {
-                "value": "1",
-                "display_name": "Smoking",
-                "category": "Behavior",
-                "subset": "Substances",
-                "parameter": "Smoking",
-                "min":"0",
-                "max":"1",
-                "data_type":"boolean",
-                "data_source": "ehr",
-                "additional_text": ""
-            },            
-            "alcohol_abuse": {
-                "value": "0",
-                "display_name": "EtOH",
-                "category": "Behavior",
-                "subset": "Substances",
-                "parameter": "EtoH",
-                "min":"0",
-                "max":"1",
-                "data_type":"boolean",
-                "data_source": "ehr",
-                "additional_text": ""
-            },            
-            "drug_abuse": {
-                "value": "1",
-                "display_name": "Illicits",
-                "category": "Behavior",
-                "subset": "Substances",
-                "parameter": "Illicits",
-                "min":"0",
-                "max":"1",
-                "data_type":"boolean",
-                "data_source": "ehr",
-                "additional_text": ""
-            },            
-            "mental_activity_score": {
-                "value": "56",
-                "display_name": "Mental Activity",
-                "category": "Behavior",
-                "subset": "Enrichment",
-                "parameter": "Mental Activity",
-                "min":"0",
-                "max":"100",
-                "data_type":"value",
-                "data_source": "redcap",
-                "additional_text": ""
-            },            
-            "school_score": {
-                "value": "68",
-                "display_name": "School",
-                "category": "Behavior",
-                "subset": "Enrichment",
-                "parameter": "School",
-                "min":"0",
-                "max":"100",
-                "data_type":"value",
-                "data_source": "ehr",
-                "additional_text": ""
-            },            
-            "athletic_score": {
-                "value": "25",
-                "display_name": "Athletics",
-                "category": "Behavior",
-                "subset": "Enrichment",
-                "parameter": "Athletics",
-                "min":"0",
-                "max":"100",
-                "data_type":"value",
-                "data_source": "redcap",
-                "additional_text": ""
-            },            
-            "walk_score": {
-                "value": "68",
-                "display_name": "Walk Score",
-                "category": "Environment",
-                "subset": "Walk",
-                "parameter": "Walk Score",
-                "min":"0",
-                "max":"100",
-                "data_type":"value",
-                "data_source": "walk_score_api",
-                "additional_text": ""
-            },            
-            "aq_score": {
-                "value": "55",
-                "display_name": "AQ Score",
-                "category": "Environment",
-                "subset": "Air",
-                "parameter": "AQ Score",
-                "min":"0",
-                "max":"100",
-                "data_type":"value",
-                "data_source": "tbd",
-                "additional_text": ""
-            },            
-            "crime_score": {
-                "value": "3",
-                "display_name": "Crime Score",
-                "category": "Environment",
-                "subset": "Crime",
-                "parameter": "Crime Score",
-                "min":"0",
-                "max":"100",
-                "data_type":"value",
-                "data_source": "tbd",
-                "additional_text": ""
-            },            
-            "aces_score": {
-                "value": "9",
-                "display_name": "",
-                "category": "Environment",
-                "subset": "Trauma",
-                "parameter": "Trauma",
-                "min":"1",
-                "max":"100",
-                "data_type":"value",
-                "data_source": "redcap",
-                "additional_text": ""
-            },            
-            "race": {
-                "value": "Asian",
-                "display_name": "Race",
-                "category": "Environment",
-                "subset": "Race",
-                "parameter": "Race",
-                "min":"0",
-                "max":"-1",
-                "data_type":"text",
-                "data_source": "ehr",
-                "additional_text": ""
-            },            
-            "ethinicity": {
-                "value": "Hispanic",
-                "display_name": "Ethnicity",
-                "category": "Environment",
-                "subset": "Ethnicity",
-                "parameter": "Ethnicity",
-                "min":"0",
-                "max":"-1",
-                "data_type":"text",
-                "data_source": "ehr",
-                "additional_text": ""
-            },            
-            "financial_strain": {
-                "value": "1",
-                "display_name": "Financial Strain",
-                "category": "Environment",
-                "subset": "Income",
-                "parameter": "Financial Strain",
-                "min":"0",
-                "max":"1",
-                "data_type":"boolean",
-                "data_source": "ehr",
-                "additional_text": ""
-            },            
-            "bmi": {
-                "value": "25",
-                "display_name": "BMI",
-                "category": "Body",
-                "subset": "BMI",
-                "parameter": "BMI",
-                "min":"0",
-                "max":"50",
-                "data_type":"value",
-                "data_source": "ehr",
-                "additional_text": ""
-            },            
-            "a1c": {
-                "value": "6",
-                "display_name": "A1C",
-                "category": "Body",
-                "subset": "A1C",
-                "parameter": "A1C",
-                "min":"4",
-                "max":"8",
-                "data_type":"value",
-                "data_source": "ehr",
-                "additional_text": ""
-            },            
-            "ldl_cholesterol": {
-                "value": "200",
-                "display_name": "LDL Cholesterol",
-                "category": "Body",
-                "subset": "Cholesterol",
-                "parameter": "LDL",
-                "min":"100",
-                "max":"300",
-                "data_type":"value",
-                "data_source": "ehr",
-                "additional_text": ""
-            },            
-            "hdl_cholesterol": {
-                "value": "180",
-                "display_name": "HDL Cholesterol",
-                "category": "Body",
-                "subset": "Cholesterol",
-                "parameter": "HDL",
-                "min":"100",
-                "max":"300",
-                "data_type":"value",
-                "data_source": "ehr",
-                "additional_text": ""
-            },            
-            "triglycerides": {
-                "value": "250",
-                "display_name": "Triglycerides",
-                "category": "Body",
-                "subset": "Cholesterol",
-                "parameter": "Triglycerides",
-                "min":"200",
-                "max":"700",
-                "data_type":"value",
-                "data_source": "ehr",
-                "additional_text": ""
-            },            
-            "systolic_bp": {
-                "value": "125",
-                "display_name": "Systolic BP",
-                "category": "Body",
-                "subset": "Blood Pressure",
-                "parameter": "Systolic BP",
-                "min":"60",
-                "max":"200",
-                "data_type":"value",
-                "data_source": "ehr",
-                "additional_text": ""
-            },            
-            "diastolic_bp": {
-                "value": "80",
-                "display_name": "Diastolic BP",
-                "category": "Body",
-                "subset": "Blood Pressure",
-                "parameter": "Diastolic Bp",
-                "min":"40",
-                "max":"150",
-                "data_type":"value",
-                "data_source": "ehr",
-                "additional_text": ""
-            },            
-            "gait_walk_score": {
-                "value": "20",
-                "display_name": "Gait Score",
-                "category": "Functional Tests",
-                "subset": "Gait",
-                "parameter": "Gait Score",
-                "min":"1",
-                "max":"100",
-                "data_type":"value",
-                "data_source": "tbd",
-                "additional_text": ""
-            },            
-            "tabcat_cognition": {
-                "value": "25",
-                "display_name": "Cognition",
-                "category": "Functional Tests",
-                "subset": "Tabcat",
-                "parameter": "Cognition",
-                "min":"1",
-                "max":"100",
-                "data_type":"value",
-                "data_source": "tbd",
-                "additional_text": ""
-            },            
-            "vision_score": {
-                "value": "15",
-                "display_name": "Vision Score",
-                "category": "Functional Tests",
-                "subset": "Vision",
-                "parameter": "Vision",
-                "min":"1",
-                "max":"100",
-                "data_type":"value",
-                "data_source": "tbd",
-                "additional_text": ""
-            },            
-            "hearing_score": {
-                "value": "16",
-                "display_name": "Hearing Score",
-                "category": "Functional Tests",
-                "subset": "Hearing",
-                "parameter": "Hearing Score",
-                "min":"1",
-                "max":"100",
-                "data_type":"value",
-                "data_source": "tbd",
-                "additional_text": ""
-            },            
-            "other_factors": {
-                "value": "31",
-                "display_name": "Other",
-                "category": "Functional Tests",
-                "subset": "Other",
-                "parameter": "Misc",
-                "min":"1",
-                "max":"100",
-                "data_type":"value",
-                "data_source": "tbd",
-                "additional_text": ""
-            }
+        "gene_combined": {
+            "value": "20",
+            "display_name": "Combined",
+            "category": "Genetics",
+            "subset": "Global",
+            "parameter": "combined",
+            "score_limits": {
+                "total_range": [
+                    {
+                        "min": 1,
+                        "max": 100
+                    }
+                ],
+                "male": [
+                    {
+                        "min": 1,
+                        "max": 100,
+                        "impact_score": 0,
+                        "description": "TBD"
+                    }
+                ],
+                "female": [
+                    {
+                        "min": 1,
+                        "max": 100,
+                        "impact_score": 0,
+                        "description": "TBD"
+                    }
+                ]
+            },
+            "data_type": "value",
+            "data_source": "23andMe",
+            "additional_text": ""
+        },
+        "gene_ancestry": {
+            "value": "30",
+            "display_name": "Ancestry",
+            "category": "Genetics",
+            "subset": "Ancestry",
+            "parameter": "Ancestry",
+            "score_limits": {
+                "total_range": [
+                    {
+                        "min": 1,
+                        "max": 100
+                    }
+                ],
+                "male": [
+                    {
+                        "min": 1,
+                        "max": 100,
+                        "impact_score": 0,
+                        "description": "TBD"
+                    }
+                ],
+                "female": [
+                    {
+                        "min": 1,
+                        "max": 100,
+                        "impact_score": 0,
+                        "description": "TBD"
+                    }
+                ]
+            },
+            "data_type": "value",
+            "data_source": "23andMe",
+            "additional_text": ""
+        },
+        "gene_stroke": {
+            "value": "20",
+            "display_name": "Stroke",
+            "category": "Genetics",
+            "subset": "Set 1",
+            "parameter": "Stroke",
+            "score_limits": {
+                "total_range": [
+                    {
+                        "min": 1,
+                        "max": 100
+                    }
+                ],
+                "male": [
+                    {
+                        "min": 1,
+                        "max": 100,
+                        "impact_score": 0,
+                        "description": "TBD"
+                    }
+                ],
+                "female": [
+                    {
+                        "min": 1,
+                        "max": 100,
+                        "impact_score": 0,
+                        "description": "TBD"
+                    }
+                ]
+            },
+            "data_type": "value",
+            "data_source": "23andMe",
+            "additional_text": ""
+        },
+        "gene_cardiometabolic": {
+            "value": "40",
+            "display_name": "Cardio Metabolic",
+            "category": "Genetics",
+            "subset": "Set 1",
+            "parameter": "Cardio Metabolic",
+            "score_limits": {
+                "total_range": [
+                    {
+                        "min": 1,
+                        "max": 100
+                    }
+                ],
+                "male": [
+                    {
+                        "min": 1,
+                        "max": 100,
+                        "impact_score": 0,
+                        "description": "TBD"
+                    }
+                ],
+                "female": [
+                    {
+                        "min": 1,
+                        "max": 100,
+                        "impact_score": 0,
+                        "description": "TBD"
+                    }
+                ]
+            },
+            "data_type": "value",
+            "data_source": "23andMe",
+            "additional_text": ""
+        },
+        "gene_epilepsy": {
+            "value": "",
+            "display_name": "Epilepsy",
+            "category": "Genetics",
+            "subset": "Set 2",
+            "parameter": "Epilepsy",
+            "score_limits": {
+                "total_range": [
+                    {
+                        "min": 1,
+                        "max": 100
+                    }
+                ],
+                "male": [
+                    {
+                        "min": 1,
+                        "max": 100,
+                        "impact_score": 0,
+                        "description": "TBD"
+                    }
+                ],
+                "female": [
+                    {
+                        "min": 1,
+                        "max": 100,
+                        "impact_score": 0,
+                        "description": "TBD"
+                    }
+                ]
+            },
+            "data_type": "value",
+            "data_source": "23andMe",
+            "additional_text": ""
+        },
+        "gene_dementia": {
+            "value": "65",
+            "display_name": "Dementia",
+            "category": "Genetics",
+            "subset": "Set 3",
+            "parameter": "Dementia",
+            "score_limits": {
+                "total_range": [
+                    {
+                        "min": 1,
+                        "max": 100
+                    }
+                ],
+                "male": [
+                    {
+                        "min": 1,
+                        "max": 100,
+                        "impact_score": 0,
+                        "description": "TBD"
+                    }
+                ],
+                "female": [
+                    {
+                        "min": 1,
+                        "max": 100,
+                        "impact_score": 0,
+                        "description": "TBD"
+                    }
+                ]
+            },
+            "data_type": "value",
+            "data_source": "23andMe",
+            "additional_text": ""
+        },
+        "gene_ad": {
+            "value": "12",
+            "display_name": "AD",
+            "category": "Genetics",
+            "subset": "Set 3",
+            "parameter": "AD",
+            "score_limits": {
+                "total_range": [
+                    {
+                        "min": 1,
+                        "max": 100
+                    }
+                ],
+                "male": [
+                    {
+                        "min": 1,
+                        "max": 100,
+                        "impact_score": 0,
+                        "description": "TBD"
+                    }
+                ],
+                "female": [
+                    {
+                        "min": 1,
+                        "max": 100,
+                        "impact_score": 0,
+                        "description": "TBD"
+                    }
+                ]
+            },
+            "data_type": "value",
+            "data_source": "23andMe",
+            "additional_text": ""
+        },
+        "gene_psychosis": {
+            "value": "14",
+            "display_name": "Schizophrenia or Psychosis",
+            "category": "Genetics",
+            "subset": "Set 4",
+            "parameter": "Schizophrenia or Psychosis",
+            "score_limits": {
+                "total_range": [
+                    {
+                        "min": 1,
+                        "max": 100
+                    }
+                ],
+                "male": [
+                    {
+                        "min": 1,
+                        "max": 100,
+                        "impact_score": 0,
+                        "description": "TBD"
+                    }
+                ],
+                "female": [
+                    {
+                        "min": 1,
+                        "max": 100,
+                        "impact_score": 0,
+                        "description": "TBD"
+                    }
+                ]
+            },
+            "data_type": "value",
+            "data_source": "23andMe",
+            "additional_text": ""
+        },
+        "gene_headache": {
+            "value": "1",
+            "display_name": "Headache or Migraine",
+            "category": "Genetics",
+            "subset": "Set 5",
+            "parameter": "Headache or Migraine",
+            "score_limits": {
+                "total_range": [
+                    {
+                        "min": 1,
+                        "max": 100
+                    }
+                ],
+                "male": [
+                    {
+                        "min": 1,
+                        "max": 100,
+                        "impact_score": 0,
+                        "description": "TBD"
+                    }
+                ],
+                "female": [
+                    {
+                        "min": 1,
+                        "max": 100,
+                        "impact_score": 0,
+                        "description": "TBD"
+                    }
+                ]
+            },
+            "data_type": "value",
+            "data_source": "23andMe",
+            "additional_text": ""
+        },
+        "gene_neruoinf": {
+            "value": "1",
+            "display_name": "Neuroinflammation",
+            "category": "Genetics",
+            "subset": "Set 6",
+            "parameter": "Neuroinflammation",
+            "score_limits": {
+                "total_range": [
+                    {
+                        "min": 1,
+                        "max": 100
+                    }
+                ],
+                "male": [
+                    {
+                        "min": 1,
+                        "max": 100,
+                        "impact_score": 0,
+                        "description": "TBD"
+                    }
+                ],
+                "female": [
+                    {
+                        "min": 1,
+                        "max": 100,
+                        "impact_score": 0,
+                        "description": "TBD"
+                    }
+                ]
+            },
+            "data_type": "value",
+            "data_source": "23andMe",
+            "additional_text": ""
+        },
+        "godin_total_score": {
+            "value": "15",
+            "display_name": "Physical Activity or Athletics",
+            "category": "Behavior",
+            "subset": "Activity",
+            "parameter": "Physical Activity or Athletics",
+            "score_limits": {
+                "total_range": [
+                    {
+                        "min": 0,
+                        "max": 24
+                    }
+                ],
+                "male": [
+                    {
+                        "min": 24,
+                        "max": 100,
+                        "impact_score": 1,
+                        "description": "Active"
+                    },
+                    {
+                        "min": 14,
+                        "max": 23,
+                        "impact_score": 0,
+                        "description": "Moderately Active"
+                    },
+                    {
+                        "min": 0,
+                        "max": 13,
+                        "impact_score": -1,
+                        "description": "Insufficiently Active/Sedentary"
+                    }
+                ],
+                "female": [
+                    {
+                        "min": 24,
+                        "max": 100,
+                        "impact_score": 1,
+                        "description": "Active"
+                    },
+                    {
+                        "min": 14,
+                        "max": 23,
+                        "impact_score": 0,
+                        "description": "Moderately Active"
+                    },
+                    {
+                        "min": 0,
+                        "max": 13,
+                        "impact_score": -1,
+                        "description": "Insufficiently Active/Sedentary"
+                    }
+                ]
+            },
+            "data_type": "value",
+            "data_source": "redcap",
+            "additional_text": ""
+        },
+        "food_index_score": {
+            "value": "2",
+            "display_name": "Diet Score",
+            "category": "Behavior",
+            "subset": "Nutrition",
+            "parameter": "Diet Score",
+            "score_limits": {
+                "total_range": [
+                    {
+                        "min": 0,
+                        "max": 10
+                    }
+                ],
+                "male": [
+                    {
+                        "min": 0,
+                        "max": 1,
+                        "impact_score": 0,
+                        "description": "TBD"
+                    },
+                    {
+                        "min": 2,
+                        "max": 10,
+                        "impact_score": 1,
+                        "description": "TBD"
+                    }
+                ],
+                "female": [
+                    {
+                        "min": 0,
+                        "max": 1,
+                        "impact_score": 0,
+                        "description": "TBD"
+                    },
+                    {
+                        "min": 2,
+                        "max": 10,
+                        "impact_score": 1,
+                        "description": "Best"
+                    }
+                ]
+            },
+            "data_type": "value",
+            "data_source": "redcap",
+            "additional_text": ""
+        },
+        "psqi_final_score": {
+            "value": "15",
+            "display_name": "Sleep Score",
+            "category": "Behavior",
+            "subset": "Sleep",
+            "parameter": "Sleep Score",
+            "score_limits": {
+                "total_range": [
+                    {
+                        "min": 0,
+                        "max": 21
+                    }
+                ],
+                "male": [
+                    {
+                        "min": 0,
+                        "max": 5,
+                        "impact_score": 1,
+                        "description": "Good - Sleep Quality"
+                    },
+                    {
+                        "min": 6,
+                        "max": 11,
+                        "impact_score": 0,
+                        "description": "Ok - Sleep Quality"
+                    },
+                    {
+                        "min": 12,
+                        "max": 21,
+                        "impact_score": -1,
+                        "description": "Worse - Sleep Quality"
+                    }
+                ],
+                "female": [
+                    {
+                        "min": 0,
+                        "max": 5,
+                        "impact_score": 1,
+                        "description": "Good - Sleep Quality"
+                    },
+                    {
+                        "min": 6,
+                        "max": 11,
+                        "impact_score": 0,
+                        "description": "Ok - Sleep Quality"
+                    },
+                    {
+                        "min": 12,
+                        "max": 21,
+                        "impact_score": -1,
+                        "description": "Worse - Sleep Quality"
+                    }
+                ]
+            },
+            "data_type": "value",
+            "data_source": "redcap",
+            "additional_text": ""
+        },
+        "tobacco_abuse": {
+            "value": "Never",
+            "display_name": "Smoking",
+            "category": "Behavior",
+            "subset": "Substances",
+            "parameter": "Smoking",
+            "score_limits": {
+                "total_range": [
+                    {
+                        "min": "",
+                        "max": ""
+                    }
+                ],
+                "male": [
+                    {
+                        "min": "Never",
+                        "max": "",
+                        "impact_score": 1,
+                        "description": "Non-Smoker"
+                    },
+                    {
+                        "min": "Former",
+                        "max": "",
+                        "impact_score": 0,
+                        "description": "Ex-Smoker"
+                    },
+                    {
+                        "min": "Every Day",
+                        "max": "",
+                        "impact_score": -1,
+                        "description": "Yes"
+                    },
+                    {
+                        "min": "Some Days",
+                        "max": "",
+                        "impact_score": -2,
+                        "description": "Yes"
+                    },
+                    {
+                        "min": "Unknown",
+                        "max": "",
+                        "impact_score": -3,
+                        "description": "Unknown"
+                    }
+                ],
+                "female": [
+                    {
+                        "min": "Never",
+                        "max": "",
+                        "impact_score": 1,
+                        "description": "Non-Smoker"
+                    },
+                    {
+                        "min": "Former",
+                        "max": "",
+                        "impact_score": 0,
+                        "description": "Ex-Smoker"
+                    },
+                    {
+                        "min": "Every Day",
+                        "max": "",
+                        "impact_score": -1,
+                        "description": "Yes"
+                    },
+                    {
+                        "min": "Some Days",
+                        "max": "",
+                        "impact_score": -2,
+                        "description": "Yes"
+                    },
+                    {
+                        "min": "Unknown",
+                        "max": "",
+                        "impact_score": -3,
+                        "description": "Unknown"
+                    }
+                ]
+            },
+            "data_type": "text",
+            "data_source": "ehr",
+            "additional_text": ""
+        },
+        "alcohol_abuse": {
+            "value": "3",
+            "display_name": "EtOH",
+            "category": "Behavior",
+            "subset": "Substances",
+            "parameter": "EtoH",
+            "score_limits": {
+                "total_range": [
+                    {
+                        "min": 0,
+                        "max": 100
+                    }
+                ],
+                "male": [
+                    {
+                        "min": 3,
+                        "max": 100,
+                        "impact_score": 1,
+                        "description": "Positive"
+                    },
+                    {
+                        "min": 0,
+                        "max": 2,
+                        "impact_score": -1,
+                        "description": "Negative"
+                    }
+                ],
+                "female": [
+                    {
+                        "min": 2,
+                        "max": 100,
+                        "impact_score": 1,
+                        "description": "Positive"
+                    },
+                    {
+                        "min": 0,
+                        "max": 1,
+                        "impact_score": -1,
+                        "description": "Negative"
+                    }
+                ]
+            },
+            "data_type": "boolean",
+            "data_source": "ehr",
+            "additional_text": ""
+        },
+        "drug_abuse": {
+            "value": "No",
+            "display_name": "Illicits",
+            "category": "Behavior",
+            "subset": "Substances",
+            "parameter": "Illicits",
+            "score_limits": {
+                "total_range": [
+                    {
+                        "min": "",
+                        "max": ""
+                    }
+                ],
+                "male": [
+                    {
+                        "min": "No",
+                        "max": "",
+                        "impact_score": -1,
+                        "description": "Negative"
+                    },
+                    {
+                        "min": "Yes",
+                        "max": "Yes",
+                        "impact_score": 1,
+                        "description": "Positive"
+                    }
+                ],
+                "female": [
+                    {
+                        "min": "No",
+                        "max": "",
+                        "impact_score": -1,
+                        "description": "Negative"
+                    },
+                    {
+                        "min": "Yes",
+                        "max": "",
+                        "impact_score": 1,
+                        "description": "Positive"
+                    }
+                ]
+            },
+            "data_type": "text",
+            "data_source": "ehr",
+            "additional_text": ""
+        },
+        "mental_activity_score": {
+            "value": "56",
+            "display_name": "Mental Activity",
+            "category": "Behavior",
+            "subset": "Enrichment",
+            "parameter": "Mental Activity",
+            "score_limits": {
+                "total_range": [
+                    {
+                        "min": 1,
+                        "max": 100
+                    }
+                ],
+                "male": [
+                    {
+                        "min": 1,
+                        "max": 100,
+                        "impact_score": 0,
+                        "description": "TBD"
+                    }
+                ],
+                "female": [
+                    {
+                        "min": 1,
+                        "max": 100,
+                        "impact_score": 0,
+                        "description": "TBD"
+                    }
+                ]
+            },
+            "data_type": "value",
+            "data_source": "redcap",
+            "additional_text": ""
+        },
+        "education_level": {
+            "value": "14",
+            "display_name": "Education Level - No. of Yrs",
+            "category": "Behavior",
+            "subset": "Enrichment",
+            "parameter": "Education",
+            "score_limits": {
+                "total_range": [
+                    {
+                        "min": 0,
+                        "max": -1
+                    }
+                ],
+                "male": [
+                    {
+                        "min": 0,
+                        "max": -1,
+                        "impact_score": 0,
+                        "description": "TBD"
+                    }
+                ],
+                "female": [
+                    {
+                        "min": 0,
+                        "max": -1,
+                        "impact_score": 0,
+                        "description": "TBD"
+                    }
+                ]
+            },
+            "data_type": "value",
+            "data_source": "ehr",
+            "additional_text": ""
+        },
+        "education_degree": {
+            "value": "MBA",
+            "display_name": "Degrees",
+            "category": "Behavior",
+            "subset": "Enrichment",
+            "parameter": "Education",
+            "score_limits": {
+                "total_range": [
+                    {
+                        "min": "",
+                        "max": ""
+                    }
+                ],
+                "male": [
+                    {
+                        "min": "",
+                        "max": "",
+                        "impact_score": 0,
+                        "description": "TBD"
+                    }
+                ],
+                "female": [
+                    {
+                        "min": "",
+                        "max": "",
+                        "impact_score": 0,
+                        "description": "TBD"
+                    }
+                ]
+            },
+            "data_type": "text",
+            "data_source": "ehr",
+            "additional_text": ""
+        },
+        "walk_score": {
+            "value": "68",
+            "display_name": "Walk Score",
+            "category": "Environment",
+            "subset": "Walk",
+            "parameter": "Walk Score",
+            "score_limits": {
+                "total_range": [
+                    {
+                        "min": 0,
+                        "max": 100
+                    }
+                ],
+                "male": [
+                    {
+                        "min": 0,
+                        "max": 50,
+                        "impact_score": -1,
+                        "description": "Bad"
+                    },
+                    {
+                        "min": 50,
+                        "max": 70,
+                        "impact_score": 0,
+                        "description": "Okay"
+                    },
+                    {
+                        "min": 70,
+                        "max": 100,
+                        "impact_score": 1,
+                        "description": "Good"
+                    }
+                ],
+                "female": [
+                    {
+                        "min": 0,
+                        "max": 50,
+                        "impact_score": -1,
+                        "description": "Bad"
+                    },
+                    {
+                        "min": 50,
+                        "max": 70,
+                        "impact_score": 0,
+                        "description": "Okay"
+                    },
+                    {
+                        "min": 70,
+                        "max": 100,
+                        "impact_score": -1,
+                        "description": "Good"
+                    }
+                ]
+            },
+            "data_type": "value",
+            "data_source": "walk_score_api",
+            "additional_text": ""
+        },
+        "aq_score": {
+            "value": "55",
+            "display_name": "AQ Score",
+            "category": "Environment",
+            "subset": "Air",
+            "parameter": "AQ Score",
+            "score_limits": {
+                "total_range": [
+                    {
+                        "min": 0,
+                        "max": 100
+                    }
+                ],
+                "male": [
+                    {
+                        "min": 0,
+                        "max": 100,
+                        "impact_score": 0,
+                        "description": "TBD"
+                    }
+                ],
+                "female": [
+                    {
+                        "min": 0,
+                        "max": 100,
+                        "impact_score": 0,
+                        "description": "TBD"
+                    }
+                ]
+            },
+            "data_type": "value",
+            "data_source": "tbd",
+            "additional_text": ""
+        },
+        "crime_score": {
+            "value": "3",
+            "display_name": "Crime Score",
+            "category": "Environment",
+            "subset": "Crime",
+            "parameter": "Crime Score",
+            "score_limits": {
+                "total_range": [
+                    {
+                        "min": 1,
+                        "max": 100
+                    }
+                ],
+                "male": [
+                    {
+                        "min": 0,
+                        "max": 100,
+                        "impact_score": 0,
+                        "description": "TBD"
+                    }
+                ],
+                "female": [
+                    {
+                        "min": 0,
+                        "max": 100,
+                        "impact_score": 0,
+                        "description": "TBD"
+                    }
+                ]
+            },
+            "data_type": "value",
+            "data_source": "tbd",
+            "additional_text": ""
+        },
+        "aces_score": {
+            "value": "9",
+            "display_name": "",
+            "category": "Environment",
+            "subset": "Trauma",
+            "parameter": "Trauma",
+            "score_limits": {
+                "total_range": [
+                    {
+                        "min": 1,
+                        "max": 100
+                    }
+                ],
+                "male": [
+                    {
+                        "min": 0,
+                        "max": 100,
+                        "impact_score": 0,
+                        "description": "TBD"
+                    }
+                ],
+                "female": [
+                    {
+                        "min": 0,
+                        "max": 100,
+                        "impact_score": 0,
+                        "description": "TBD"
+                    }
+                ]
+            },
+            "data_type": "value",
+            "data_source": "redcap",
+            "additional_text": ""
+        },
+        "stress_score": {
+            "value": "9",
+            "display_name": "",
+            "category": "Environment",
+            "subset": "Stress",
+            "parameter": "Stress",
+            "score_limits": {
+                "total_range": [
+                    {
+                        "min": 1,
+                        "max": 100
+                    }
+                ],
+                "male": [
+                    {
+                        "min": 0,
+                        "max": 100,
+                        "impact_score": 0,
+                        "description": "TBD"
+                    }
+                ],
+                "female": [
+                    {
+                        "min": 0,
+                        "max": 100,
+                        "impact_score": 0,
+                        "description": "TBD"
+                    }
+                ]
+            },
+            "data_type": "value",
+            "data_source": "redcap",
+            "additional_text": ""
+        },
+        "race": {
+            "value": "Asian",
+            "display_name": "Race",
+            "category": "Environment",
+            "subset": "Race",
+            "parameter": "Race",
+            "score_limits": {
+                "total_range": [
+                    {
+                        "min": "",
+                        "max": ""
+                    }
+                ],
+                "male": [
+                    {
+                        "min": "",
+                        "max": "",
+                        "impact_score": 0,
+                        "description": "TBD"
+                    }
+                ],
+                "female": [
+                    {
+                        "min": "",
+                        "max": "",
+                        "impact_score": 0,
+                        "description": "TBD"
+                    }
+                ]
+            },
+            "data_type": "text",
+            "data_source": "ehr",
+            "additional_text": ""
+        },
+        "ethinicity": {
+            "value": "Hispanic",
+            "display_name": "Ethnicity",
+            "category": "Environment",
+            "subset": "Ethnicity",
+            "parameter": "Ethnicity",
+            "score_limits": {
+                "total_range": [
+                    {
+                        "min": "",
+                        "max": ""
+                    }
+                ],
+                "male": [
+                    {
+                        "min": "",
+                        "max": "",
+                        "impact_score": 0,
+                        "description": "TBD"
+                    }
+                ],
+                "female": [
+                    {
+                        "min": "",
+                        "max": "",
+                        "impact_score": 0,
+                        "description": "TBD"
+                    }
+                ]
+            },
+            "data_type": "text",
+            "data_source": "ehr",
+            "additional_text": ""
+        },
+        "financial_strain": {
+            "value": "Somewhat hard",
+            "display_name": "Financial Resource Strain",
+            "category": "Environment",
+            "subset": "Income",
+            "parameter": "Financial Strain",
+            "score_limits": {
+                "total_range": [
+                    {
+                        "min": "",
+                        "max": ""
+                    }
+                ],
+                "male": [
+                    {
+                        "min": "",
+                        "max": "",
+                        "impact_score": 0,
+                        "description": "TBD"
+                    }
+                ],
+                "female": [
+                    {
+                        "min": "",
+                        "max": "",
+                        "impact_score": 0,
+                        "description": "TBD"
+                    }
+                ]
+            },
+            "data_type": "text",
+            "data_source": "ehr",
+            "additional_text": ""
+        },
+        "bmi": {
+            "value": "25",
+            "display_name": "BMI",
+            "category": "Body",
+            "subset": "BMI",
+            "parameter": "BMI",
+            "score_limits": {
+                "total_range": [
+                    {
+                        "min": 0,
+                        "max": 100
+                    }
+                ],
+                "male": [
+                    {
+                        "min": 18.6,
+                        "max": 24.5,
+                        "impact_score": 0,
+                        "description": "Healthy weight"
+                    },
+                    {
+                        "min": 0,
+                        "max": 18.5,
+                        "impact_score": -1,
+                        "description": "Underweight"
+                    },
+                    {
+                        "min": 24.6,
+                        "max": 29.9,
+                        "impact_score": -2,
+                        "description": "Overweight"
+                    },
+                    {
+                        "min": 30,
+                        "max": 34.9,
+                        "impact_score": -3,
+                        "description": "Obesity Class I"
+                    },
+                    {
+                        "min": 34.6,
+                        "max": 39.9,
+                        "impact_score": -3,
+                        "description": "Obesity Class II"
+                    },
+                    {
+                        "min": 40,
+                        "max": 100,
+                        "impact_score": -3,
+                        "description": "Obesity Class III"
+                    }
+                ],
+                "female": [
+                    {
+                        "min": 18.6,
+                        "max": 24.5,
+                        "impact_score": 0,
+                        "description": "Healthy weight"
+                    },
+                    {
+                        "min": 0,
+                        "max": 18.5,
+                        "impact_score": -1,
+                        "description": "Underweight"
+                    },
+                    {
+                        "min": 24.6,
+                        "max": 29.9,
+                        "impact_score": -2,
+                        "description": "Overweight"
+                    },
+                    {
+                        "min": 30,
+                        "max": 34.9,
+                        "impact_score": -3,
+                        "description": "Obesity Class I"
+                    },
+                    {
+                        "min": 34.6,
+                        "max": 39.9,
+                        "impact_score": -3,
+                        "description": "Obesity Class II"
+                    },
+                    {
+                        "min": 40,
+                        "max": 100,
+                        "impact_score": -3,
+                        "description": "Obesity Class III"
+                    }
+                ]
+            },
+            "data_type": "value",
+            "data_source": "ehr",
+            "additional_text": ""
+        },
+        "a1c": {
+            "value": "6",
+            "display_name": "A1C",
+            "category": "Body",
+            "subset": "A1C",
+            "parameter": "A1C",
+            "score_limits": {
+                "total_range": [
+                    {
+                        "min": 0,
+                        "max": 10
+                    }
+                ],
+                "male": [
+                    {
+                        "min": 0,
+                        "max": 5.6,
+                        "impact_score": 0,
+                        "description": "Normal"
+                    },
+                    {
+                        "min": 5.7,
+                        "max": 6.4,
+                        "impact_score": -1,
+                        "description": "Pre-Diabetes"
+                    },
+                    {
+                        "min": 6.5,
+                        "max": 10,
+                        "impact_score": -2,
+                        "description": "Diabetes"
+                    }
+                ],
+                "female": [
+                    {
+                        "min": 0,
+                        "max": 5.6,
+                        "impact_score": 0,
+                        "description": "Normal"
+                    },
+                    {
+                        "min": 5.7,
+                        "max": 6.4,
+                        "impact_score": -1,
+                        "description": "Pre-Diabetes"
+                    },
+                    {
+                        "min": 6.5,
+                        "max": 10,
+                        "impact_score": -2,
+                        "description": "Diabetes"
+                    }
+                ]
+            },
+            "data_type": "value",
+            "data_source": "ehr",
+            "additional_text": ""
+        },
+        "ldl_cholesterol": {
+            "value": "200",
+            "display_name": "LDL Cholesterol",
+            "category": "Body",
+            "subset": "Cholesterol",
+            "parameter": "LDL",
+            "score_limits": {
+                "total_range": [
+                    {
+                        "min": 0,
+                        "max": 300
+                    }
+                ],
+                "male": [
+                    {
+                        "min": 0,
+                        "max": 100,
+                        "impact_score": 1,
+                        "description": "Optimal"
+                    },
+                    {
+                        "min": 100,
+                        "max": 129,
+                        "impact_score": 0,
+                        "description": "Near Optimal"
+                    },
+                    {
+                        "min": 130,
+                        "max": 159,
+                        "impact_score": -1,
+                        "description": "Borderline High"
+                    },
+                    {
+                        "min": 160,
+                        "max": 189,
+                        "impact_score": -2,
+                        "description": "High"
+                    },
+                    {
+                        "min": 190,
+                        "max": 300,
+                        "impact_score": -3,
+                        "description": "Very High"
+                    }
+                ],
+                "female": [
+                    {
+                        "min": 0,
+                        "max": 100,
+                        "impact_score": 1,
+                        "description": "Optimal"
+                    },
+                    {
+                        "min": 100,
+                        "max": 129,
+                        "impact_score": 0,
+                        "description": "Near Optimal"
+                    },
+                    {
+                        "min": 130,
+                        "max": 159,
+                        "impact_score": -1,
+                        "description": "Borderline High"
+                    },
+                    {
+                        "min": 160,
+                        "max": 189,
+                        "impact_score": -2,
+                        "description": "High"
+                    },
+                    {
+                        "min": 190,
+                        "max": 300,
+                        "impact_score": -3,
+                        "description": "Very High"
+                    }
+                ]
+            },
+            "data_type": "value",
+            "data_source": "ehr",
+            "additional_text": ""
+        },
+        "hdl_cholesterol": {
+            "value": "180",
+            "display_name": "HDL Cholesterol",
+            "category": "Body",
+            "subset": "Cholesterol",
+            "parameter": "HDL",
+            "score_limits": {
+                "total_range": [
+                    {
+                        "min": 0,
+                        "max": 100
+                    }
+                ],
+                "male": [
+                    {
+                        "min": 0,
+                        "max": 34,
+                        "impact_score": -1,
+                        "description": "Below Normal"
+                    },
+                    {
+                        "min": 35,
+                        "max": 65,
+                        "impact_score": 0,
+                        "description": "Normal"
+                    },
+                    {
+                        "min": 66,
+                        "max": 100,
+                        "impact_score": -2,
+                        "description": "Above Normal"
+                    }
+                ],
+                "female": [
+                    {
+                        "min": 0,
+                        "max": 34,
+                        "impact_score": -1,
+                        "description": "Below Normal"
+                    },
+                    {
+                        "min": 35,
+                        "max": 80,
+                        "impact_score": 0,
+                        "description": "Normal"
+                    },
+                    {
+                        "min": 81,
+                        "max": 100,
+                        "impact_score": -2,
+                        "description": "Above Normal"
+                    }
+                ]
+            },
+            "data_type": "value",
+            "data_source": "ehr",
+            "additional_text": ""
+        },
+        "triglycerides": {
+            "value": "250",
+            "display_name": "Triglycerides",
+            "category": "Body",
+            "subset": "Cholesterol",
+            "parameter": "Triglycerides",
+            "score_limits": {
+                "total_range": [
+                    {
+                        "min": 1,
+                        "max": 1000
+                    }
+                ],
+                "male": [
+                    {
+                        "min": 0,
+                        "max": 150,
+                        "impact_score": 0,
+                        "description": "Normal"
+                    },
+                    {
+                        "min": 151,
+                        "max": 1000,
+                        "impact_score": -1,
+                        "description": "High"
+                    }
+                ],
+                "female": [
+                    {
+                        "min": 0,
+                        "max": 150,
+                        "impact_score": 0,
+                        "description": "Normal"
+                    },
+                    {
+                        "min": 151,
+                        "max": 1000,
+                        "impact_score": -1,
+                        "description": "High"
+                    }
+                ]
+            },
+            "data_type": "value",
+            "data_source": "ehr",
+            "additional_text": ""
+        },
+        "systolic_bp": {
+            "value": "125",
+            "display_name": "Systolic BP",
+            "category": "Body",
+            "subset": "Blood Pressure",
+            "parameter": "Systolic BP",
+            "score_limits": {
+                "total_range": [
+                    {
+                        "min": 0,
+                        "max": 300
+                    }
+                ],
+                "male": [
+                    {
+                        "min": 0,
+                        "max": 120,
+                        "impact_score": 0,
+                        "description": "Normal"
+                    },
+                    {
+                        "min": 121,
+                        "max": 129,
+                        "impact_score": -1,
+                        "description": "Elevated"
+                    },
+                    {
+                        "min": 130,
+                        "max": 139,
+                        "impact_score": -2,
+                        "description": "Hypertension Stage 1"
+                    },
+                    {
+                        "min": 140,
+                        "max": 179,
+                        "impact_score": -3,
+                        "description": "Hypertension Stage 2"
+                    },
+                    {
+                        "min": 180,
+                        "max": 300,
+                        "impact_score": -3,
+                        "description": "Hypertension Stage 3"
+                    }
+                ],
+                "female": [
+                    {
+                        "min": 0,
+                        "max": 120,
+                        "impact_score": 0,
+                        "description": "Normal"
+                    },
+                    {
+                        "min": 121,
+                        "max": 129,
+                        "impact_score": -1,
+                        "description": "Elevated"
+                    },
+                    {
+                        "min": 130,
+                        "max": 139,
+                        "impact_score": -2,
+                        "description": "Hypertension Stage 1"
+                    },
+                    {
+                        "min": 140,
+                        "max": 179,
+                        "impact_score": -3,
+                        "description": "Hypertension Stage 2"
+                    },
+                    {
+                        "min": 180,
+                        "max": 300,
+                        "impact_score": -3,
+                        "description": "Hypertension Stage 3"
+                    }
+                ]
+            },
+            "data_type": "value",
+            "data_source": "ehr",
+            "additional_text": ""
+        },
+        "diastolic_bp": {
+            "value": "80",
+            "display_name": "Diastolic BP",
+            "category": "Body",
+            "subset": "Blood Pressure",
+            "parameter": "Diastolic Bp",
+            "score_limits": {
+                "total_range": [
+                    {
+                        "min": 0,
+                        "max": 300
+                    }
+                ],
+                "male": [
+                    {
+                        "min": 0,
+                        "max": 80,
+                        "impact_score": 0,
+                        "description": "Normal"
+                    },
+                    {
+                        "min": 80,
+                        "max": 89,
+                        "impact_score": -1,
+                        "description": "Hypertension Stage 1"
+                    },
+                    {
+                        "min": 90,
+                        "max": 120,
+                        "impact_score": -2,
+                        "description": "Hypertension Stage 2"
+                    },
+                    {
+                        "min": 121,
+                        "max": 300,
+                        "impact_score": -3,
+                        "description": "Hypertension Stage 3"
+                    }
+                ],
+                "female": [
+                    {
+                        "min": 0,
+                        "max": 80,
+                        "impact_score": 0,
+                        "description": "Normal"
+                    },
+                    {
+                        "min": 80,
+                        "max": 89,
+                        "impact_score": -1,
+                        "description": "Hypertension Stage 1"
+                    },
+                    {
+                        "min": 90,
+                        "max": 120,
+                        "impact_score": -2,
+                        "description": "Hypertension Stage 2"
+                    },
+                    {
+                        "min": 121,
+                        "max": 300,
+                        "impact_score": -3,
+                        "description": "Hypertension Stage 3"
+                    }
+                ]
+            },
+            "data_type": "value",
+            "data_source": "ehr",
+            "additional_text": ""
+        },
+        "gait_walk_score": {
+            "value": "20",
+            "display_name": "Gait Score",
+            "category": "Functional Tests",
+            "subset": "Gait",
+            "parameter": "Gait Score",
+            "score_limits": {
+                "total_range": [
+                    {
+                        "min": 1,
+                        "max": 100
+                    }
+                ],
+                "male": [
+                    {
+                        "min": 1,
+                        "max": 100,
+                        "impact_score": 0,
+                        "description": "TBD"
+                    }
+                ],
+                "female": [
+                    {
+                        "min": 1,
+                        "max": 100,
+                        "impact_score": 0,
+                        "description": "TBD"
+                    }
+                ]
+            },
+            "data_type": "value",
+            "data_source": "tbd",
+            "additional_text": ""
+        },
+        "tabcat_cognition": {
+            "value": "25",
+            "display_name": "Cognition",
+            "category": "Functional Tests",
+            "subset": "Tabcat",
+            "parameter": "Cognition",
+            "score_limits": {
+                "total_range": [
+                    {
+                        "min": -10,
+                        "max": 10
+                    }
+                ],
+                "male": [
+                    {
+                        "min": -10,
+                        "max": -1.4,
+                        "impact_score": -2,
+                        "description": "High likelihood of Cognitive Impairment"
+                    },
+                    {
+                        "min": -1.5,
+                        "max": -1.0,
+                        "impact_score": -1,
+                        "description": "Moderate likelihood of Cognitive Impairment"
+                    },
+                    {
+                        "min": 0.9,
+                        "max": 10,
+                        "impact_score": 0,
+                        "description": "Low likelihood of Cognitive Impairment"
+                    }
+                ],
+                "female": [
+                    {
+                        "min": -10,
+                        "max": -1.4,
+                        "impact_score": -2,
+                        "description": "High likelihood of Cognitive Impairment"
+                    },
+                    {
+                        "min": -1.5,
+                        "max": -1.0,
+                        "impact_score": -1,
+                        "description": "Moderate likelihood of Cognitive Impairment"
+                    },
+                    {
+                        "min": 0.9,
+                        "max": 10,
+                        "impact_score": 0,
+                        "description": "Low likelihood of Cognitive Impairment"
+                    }
+                ]
+            },
+            "data_type": "value",
+            "data_source": "tabcat",
+            "additional_text": ""
+        },
+        "vision_score": {
+            "value": "15",
+            "display_name": "Vision Score",
+            "category": "Functional Tests",
+            "subset": "Vision",
+            "parameter": "Vision",
+            "score_limits": {
+                "total_range": [
+                    {
+                        "min": 1,
+                        "max": 100
+                    }
+                ],
+                "male": [
+                    {
+                        "min": 1,
+                        "max": 100,
+                        "impact_score": 0,
+                        "description": "TBD"
+                    }
+                ],
+                "female": [
+                    {
+                        "min": 1,
+                        "max": 100,
+                        "impact_score": 0,
+                        "description": "TBD"
+                    }
+                ]
+            },
+            "data_type": "value",
+            "data_source": "LLM",
+            "additional_text": ""
+        },
+        "hearing_score": {
+            "value": "16",
+            "display_name": "Hearing Score",
+            "category": "Functional Tests",
+            "subset": "Hearing",
+            "parameter": "Hearing Score",
+            "score_limits": {
+                "total_range": [
+                    {
+                        "min": 1,
+                        "max": 100
+                    }
+                ],
+                "male": [
+                    {
+                        "min": 1,
+                        "max": 100,
+                        "impact_score": 0,
+                        "description": "TBD"
+                    }
+                ],
+                "female": [
+                    {
+                        "min": 1,
+                        "max": 100,
+                        "impact_score": 0,
+                        "description": "TBD"
+                    }
+                ]
+            },
+            "data_type": "value",
+            "data_source": "tbd",
+            "additional_text": ""
+        },
+        "other_factors": {
+            "value": "31",
+            "display_name": "Other",
+            "category": "Functional Tests",
+            "subset": "Other",
+            "parameter": "Misc",
+            "score_limits": {
+                "total_range": [
+                    {
+                        "min": 1,
+                        "max": 100
+                    }
+                ],
+                "male": [
+                    {
+                        "min": 1,
+                        "max": 100,
+                        "impact_score": 0,
+                        "description": "TBD"
+                    }
+                ],
+                "female": [
+                    {
+                        "min": 1,
+                        "max": 100,
+                        "impact_score": 0,
+                        "description": "TBD"
+                    }
+                ]
+            },
+            "data_type": "value",
+            "data_source": "tbd",
+            "additional_text": ""
         }
+    }
 }
