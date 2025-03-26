@@ -34,6 +34,16 @@ def get_impact_and_description(data_type, value, score_limits):
     return [0,""]
 
 
+def get_good_range(score_limits):
+    score_range = {"min":float('inf'),"max":float('-inf')}
+    for score_category in score_limits:
+        if score_category["impact_score"] == 0:
+            score_range["min"] = score_category["min"]
+            score_range["max"] = score_category["max"]
+        if score_category["impact_score"] > 0 and isinstance(score_category["max"],int) and isinstance(score_category["min"],int) :
+            score_range["max"] = max(score_category["max"],score_range["max"])
+            score_range["min"] = min(score_category["min"],score_range["min"])
+    return score_range
 
 
 
@@ -58,12 +68,15 @@ def transform_to_flare(data):
             subset_dict[subset] = {"name": subset, "children": []}
         if name not in [val["name"] for val in subset_dict[subset]["children"]]:
             impact_score, description = get_impact_and_description(item["data_type"],item["value"],item["score_limits"][gender])
+            good_range = get_good_range(item["score_limits"][gender])
             subset_dict[subset]["children"].append({
                 "key": key,
                 "name": item["display_name"] if item["display_name"] != "" else item["parameter"],
                 "value": item["value"],
                 "min": -1 if item["data_type"] != "value" else item["score_limits"]["total_range"][0]["min"],
                 "max": -1 if item["data_type"] != "value" else item["score_limits"]["total_range"][0]["max"],
+                "good_min": good_range["min"],
+                "good_max": good_range["max"],
                 "data_source": item["data_source"],
                 "impact_score": impact_score,
                 "description": description,

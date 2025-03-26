@@ -94,11 +94,11 @@ class wheel {
                 let text = `${d.data.name}`;
                 if(d.data.value){
                     text += `\n${format(d.data.value)}`
+                    text += `\n${d.data.description}`
                     if (d.data.min !== -1) {
-                        text += `\nData Range: ${format(d.data.min)} Until ${format(d.data.max)}`;
-                    }
-                    text += `\nIs Abnormal: ${d.data.impact_score < 0 ? "true" : "false"}` 
-                    text += `\nNotes: ${d.data.description}`   
+                        text += `\nTotal Data Range: ${format(d.data.min)} Until ${format(d.data.max)}`;
+                        text += `\nTotal Good Range: ${format(d.data.good_min)} Until ${format(d.data.good_max)}`;
+                    } 
                 }
                 return text;
             });
@@ -114,8 +114,16 @@ class wheel {
             .attr("fill",d => {
                 if(d.data.value == ""){
                     return "grey"
-                } else {
-                    return "black"
+                }
+                switch(d.data.impact_score){
+                    case -3:
+                        return "red"
+                    case -2:
+                        return "orange"
+                    case -1:
+                        return "yellow"
+                    default:
+                        return "green"
                 }
             })
             .attr("font-size","9px")
