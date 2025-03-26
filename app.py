@@ -68,7 +68,7 @@ def transform_to_flare(data):
                 "impact_score": impact_score,
                 "description": description,
                 "size": 1,
-                "related_conditions": ["Stroke","Dementia"] if key == "gene_ancestry" else [],
+                "related_conditions": ["Stroke","Dementia","Palsy"] if key == "gene_ancestry" else [],
             })
     
     for k,category_data in category_dict.items():

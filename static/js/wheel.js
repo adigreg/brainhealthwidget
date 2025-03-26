@@ -97,7 +97,8 @@ class wheel {
                     if (d.data.min !== -1) {
                         text += `\nData Range: ${format(d.data.min)} Until ${format(d.data.max)}`;
                     }
-                    text += `\nIs Abnormal: ${d.data.impact_score < 0 ? "true" : "false"}`    
+                    text += `\nIs Abnormal: ${d.data.impact_score < 0 ? "true" : "false"}` 
+                    text += `\nNotes: ${d.data.description}`   
                 }
                 return text;
             });
@@ -190,7 +191,10 @@ class wheel {
 
 const wheelVar = new wheel(flareJson);
 var conditionsContainer = document.getElementById("conditions")
-for(let condition of ELIGIBLE_CONDITIONS){
+
+d3.select("svg").selectAll("path").filter(d => d.data.related_conditions?.length > 0)
+.data() // Extracts the bound data
+.flatMap(d => d.data.related_conditions).forEach(condition => {
     const button = document.createElement('button')
     button.textContent = condition
     button.className = "condition"
@@ -199,4 +203,4 @@ for(let condition of ELIGIBLE_CONDITIONS){
     button.addEventListener("mouseover", wheelVar.onConditionMouseOver);
     button.addEventListener("mouseout", wheelVar.onConditionOut);
     conditionsContainer.appendChild(button);
-}
+});
