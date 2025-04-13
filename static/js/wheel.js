@@ -9,12 +9,23 @@ class wheel {
         this.width = 900;
         this.height = this.width;
         this.radius = this.width / 8
-        this.root = this.computeDataHierarchy();
-        this.generateSvg();
+        this.parent = null;
+        this.svg = null;
+        this.arc = null;
+        this.path = null;
+        this.label = null;
+        this.centerText = "";
+        this.zoomedIn = false;
+        this.arcVisible = this.arcVisible.bind(this)
+        this.labelVisible = this.labelVisible.bind(this);
+        this.labelTransform = this.labelTransform.bind(this);
+        this.computeDataHierarchy = this.computeDataHierarchy.bind(this)
         this.generateSvg = this.generateSvg.bind(this)
         this.onConditionOut = this.onConditionOut.bind(this)
         this.onConditionMouseOver = this.onConditionMouseOver.bind(this)
         this.clicked = this.clicked.bind(this)
+        this.computeDataHierarchy();
+        this.generateSvg();
     }
 
     computeDataHierarchy(){
@@ -27,7 +38,7 @@ class wheel {
             (hierarchy);
     
         root.each(d => d.current = d);
-        return root;
+        this.root = root;
     }
 
     arcVisible(d) {
@@ -53,20 +64,19 @@ class wheel {
     }
 
     generateSvg(){
-        const arc = d3.arc()
+        this.arc = d3.arc()
         .startAngle(d => d.x0)
         .endAngle(d => d.x1)
         .padAngle(d => Math.min((d.x1 - d.x0) / 2, 0.005))
-        .padRadius(this.radius * 1.5)
+        .padRadius(this.radius * 1)
         .innerRadius(d => d.y0 * this.radius)
         .outerRadius(d => Math.max(d.y0 * this.radius, d.y1 * this.radius - 1))
             // Create the SVG container.
-        const svg = d3.create("svg")
-        .attr("viewBox", [-this.width / 2, -this.height / 2, this.width, this.width])
+        this.svg = d3.create("svg").attr("viewBox", [-this.width / 2, -this.height / 2, this.width, this.width])
         .style("font", "10px sans-serif");
 
         // Append the arcs.
-        const path = svg.append("g")
+        this.path = this.svg.append("g")
         .selectAll("path")
         .data(this.root.descendants().slice(1))
         .join("path")
@@ -81,15 +91,15 @@ class wheel {
             .attr("stroke","grey")
             .attr("stroke-width","1px")
             .attr("pointer-events", d => this.arcVisible(d.current) ? "auto" : "none")
-            .attr("d", d => arc(d.current));
+            .attr("d", d => this.arc(d.current));
 
         // Make them clickable if they have children.
-        path.filter(d => d.children)
+        this.path.filter(d => d.children)
             .style("cursor", "pointer")
             .on("click", this.clicked);
 
         const format = d3.format(",d");
-        path.append("title")
+        this.path.append("title")
             .text(d => {
                 let text = `${d.data.name}`;
                 if(d.data.value){
@@ -103,7 +113,7 @@ class wheel {
                 return text;
             });
 
-        const label = svg.append("g")
+        this.label = this.svg.append("g")
             .attr("pointer-events", "none")
             .attr("text-anchor", "middle")
             .style("user-select", "none")
@@ -114,16 +124,8 @@ class wheel {
             .attr("fill",d => {
                 if(d.data.value == ""){
                     return "grey"
-                }
-                switch(d.data.impact_score){
-                    case -3:
-                        return "red"
-                    case -2:
-                        return "orange"
-                    case -1:
-                        return "yellow"
-                    default:
-                        return "green"
+                } else {
+                    return "black"
                 }
             })
             .attr("font-size","9px")
@@ -131,19 +133,27 @@ class wheel {
             .attr("transform", d => this.labelTransform(d.current))
             .text(d => d.data.name);
 
-        const parent = svg.append("circle")
+        this.parent = this.svg.append("circle")
             .datum(this.root)
             .attr("r", this.radius)
             .attr("fill", "none")
             .attr("pointer-events", "all")
             .on("click", this.clicked);
+  
+        this.centerText = this.svg.append("text")
+            .attr("text-anchor", "middle")
+            .attr("dy", "0.35em")
+            .style("font-size", "16px")
+            .style("pointer-events", "none")
+            .text(this.root.data.name == "brainhealth" ? "" : this.root.data.name);
         var elem = document.getElementById("svg");
-        elem.appendChild(svg.node());
+        elem.appendChild(this.svg.node());
     }
 
     // Handle zoom on click.
     clicked(event, p) {
-        parent.datum(p.parent || this.root);
+        this.parent.datum(p.parent || this.root);
+        this.centerText.text(p.data.name == "brainhealth" ? "" : p.data.name);
         this.root.each(d => d.target = {
             x0: Math.max(0, Math.min(1, (d.x0 - p.x0) / (p.x1 - p.x0))) * 2 * Math.PI,
             x1: Math.max(0, Math.min(1, (d.x1 - p.x0) / (p.x1 - p.x0))) * 2 * Math.PI,
@@ -151,29 +161,29 @@ class wheel {
             y1: Math.max(0, d.y1 - p.depth)
         });
 
-        const t = svg.transition().duration(750);
+        const t = this.svg.transition().duration(750);
 
         // Transition the data on all arcs, even the ones that aren’t visible,
         // so that if this transition is interrupted, entering arcs will start
         // the next transition from the desired position.
-        path.transition(t)
+        const self = this;
+        self.path.transition(t)
             .tween("data", d => {
                 const i = d3.interpolate(d.current, d.target);
                 return t => d.current = i(t);
             })
             .filter(function(d) {
-            return +this.getAttribute("fill-opacity") || this.arcVisible(d.target);
+            return +this.getAttribute("fill-opacity") || self.arcVisible(d.target);
             })
             .attr("fill-opacity", d => this.opacity(d.data))
-            .attr("pointer-events", d => this.arcVisible(d.target) ? "auto" : "none") 
+            .attr("pointer-events", d => self.arcVisible(d.target) ? "auto" : "none") 
 
-            .attrTween("d", d => () => arc(d.current));
-
-        label.filter(function(d) {
-            return +this.getAttribute("fill-opacity") || this.labelVisible(d.target);
+            .attrTween("d", d => () => this.arc(d.current));
+        this.label.filter(function(d) {
+            return +this.getAttribute("fill-opacity") || self.labelVisible(d.target);
             }).transition(t)
-            .attr("fill-opacity", d => +this.labelVisible(d.target))
-            .attrTween("transform", d => () => this.labelTransform(d.current));
+            .attr("fill-opacity", d => +self.labelVisible(d.target))
+            .attrTween("transform", d => () => self.labelTransform(d.current));
     }
 
     getPathsForHover(event,d) {
@@ -181,18 +191,18 @@ class wheel {
     }
 
     onConditionMouseOver(event) {
-            d3.select("svg").selectAll("path")
+            this.svg.selectAll("path")
             .filter(d => this.getPathsForHover(event,d))
             .attr("stroke", "yellow")
             .attr("stroke-width", "6px");
 
-            d3.select("svg").selectAll("path")
+            this.svg.selectAll("path")
             .filter(d => !this.getPathsForHover(event,d))
             .style("fill","grey").style("fill-opacity","0.4");
       }
 
     onConditionOut(event) {
-        d3.select("svg").remove();
+        this.svg.remove();
         this.generateSvg();
     }
 }
