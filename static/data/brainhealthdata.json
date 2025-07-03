@@ -7,6 +7,9 @@
             "category": "Genetics",
             "subset": "Global",
             "parameter": "combined",
+            "related_conditions": [
+                "dementia"
+            ],
             "score_limits": {
                 "total_range": [
                     {
@@ -41,6 +44,11 @@
             "category": "Genetics",
             "subset": "Ancestry",
             "parameter": "Ancestry",
+            "related_conditions": [
+                "alzheimers",
+                "dementia",
+                "depression"
+            ],
             "score_limits": {
                 "total_range": [
                     {
@@ -75,6 +83,10 @@
             "category": "Genetics",
             "subset": "Set 1",
             "parameter": "Stroke",
+            "related_conditions": [
+                "dementia",
+                "stroke"
+            ],
             "score_limits": {
                 "total_range": [
                     {
@@ -109,6 +121,10 @@
             "category": "Genetics",
             "subset": "Set 1",
             "parameter": "Cardio Metabolic",
+            "related_conditions": [
+                "dementia",
+                "stroke"
+            ],
             "score_limits": {
                 "total_range": [
                     {
@@ -138,7 +154,7 @@
             "additional_text": ""
         },
         "gene_epilepsy": {
-            "value": "",
+            "value": "25",
             "display_name": "Epilepsy",
             "category": "Genetics",
             "subset": "Set 2",
@@ -177,6 +193,10 @@
             "category": "Genetics",
             "subset": "Set 3",
             "parameter": "Dementia",
+            "related_conditions": [
+                "alzheimers",
+                "dementia"
+            ],
             "score_limits": {
                 "total_range": [
                     {
@@ -211,6 +231,10 @@
             "category": "Genetics",
             "subset": "Set 3",
             "parameter": "AD",
+            "related_conditions": [
+                "alzheimers",
+                "dementia"
+            ],
             "score_limits": {
                 "total_range": [
                     {
@@ -245,6 +269,9 @@
             "category": "Genetics",
             "subset": "Set 4",
             "parameter": "Schizophrenia or Psychosis",
+            "related_conditions": [
+                "dementia"
+            ],
             "score_limits": {
                 "total_range": [
                     {
@@ -279,6 +306,10 @@
             "category": "Genetics",
             "subset": "Set 5",
             "parameter": "Headache or Migraine",
+            "related_conditions": [
+                "dementia",
+                "migraine"
+            ],
             "score_limits": {
                 "total_range": [
                     {
@@ -313,6 +344,10 @@
             "category": "Genetics",
             "subset": "Set 6",
             "parameter": "Neuroinflammation",
+            "related_conditions": [
+                "dementia",
+                "neuroinflammation"
+            ],
             "score_limits": {
                 "total_range": [
                     {
@@ -347,11 +382,17 @@
             "category": "Behavior",
             "subset": "Activity",
             "parameter": "Physical Activity or Athletics",
+            "related_conditions": [
+                "alzheimers",
+                "dementia",
+                "depression",
+                "stroke"
+            ],
             "score_limits": {
                 "total_range": [
                     {
                         "min": 0,
-                        "max": 24
+                        "max": 100
                     }
                 ],
                 "male": [
@@ -405,6 +446,13 @@
             "category": "Behavior",
             "subset": "Nutrition",
             "parameter": "Diet Score",
+            "related_conditions": [
+                "alzheimers",
+                "dementia",
+                "depression",
+                "neuroinflammation",
+                "stroke"
+            ],
             "score_limits": {
                 "total_range": [
                     {
@@ -451,6 +499,13 @@
             "category": "Behavior",
             "subset": "Sleep",
             "parameter": "Sleep Score",
+            "related_conditions": [
+                "alzheimers",
+                "dementia",
+                "depression",
+                "migraine",
+                "stroke"
+            ],
             "score_limits": {
                 "total_range": [
                     {
@@ -509,6 +564,14 @@
             "category": "Behavior",
             "subset": "Substances",
             "parameter": "Smoking",
+            "related_conditions": [
+                "alzheimers",
+                "dementia",
+                "depression",
+                "migraine",
+                "neuroinflammation",
+                "stroke"
+            ],
             "score_limits": {
                 "total_range": [
                     {
@@ -591,6 +654,13 @@
             "category": "Behavior",
             "subset": "Substances",
             "parameter": "EtoH",
+            "related_conditions": [
+                "alzheimers",
+                "dementia",
+                "depression",
+                "migraine",
+                "stroke"
+            ],
             "score_limits": {
                 "total_range": [
                     {
@@ -637,6 +707,13 @@
             "category": "Behavior",
             "subset": "Substances",
             "parameter": "Illicits",
+            "related_conditions": [
+                "alzheimers",
+                "dementia",
+                "depression",
+                "migraine",
+                "stroke"
+            ],
             "score_limits": {
                 "total_range": [
                     {
@@ -683,6 +760,10 @@
             "category": "Behavior",
             "subset": "Enrichment",
             "parameter": "Mental Activity",
+            "related_conditions": [
+                "alzheimers",
+                "dementia"
+            ],
             "score_limits": {
                 "total_range": [
                     {
@@ -717,6 +798,10 @@
             "category": "Behavior",
             "subset": "Enrichment",
             "parameter": "Education",
+            "related_conditions": [
+                "alzheimers",
+                "dementia"
+            ],
             "score_limits": {
                 "total_range": [
                     {
@@ -751,6 +836,10 @@
             "category": "Behavior",
             "subset": "Enrichment",
             "parameter": "Education",
+            "related_conditions": [
+                "alzheimers",
+                "dementia"
+            ],
             "score_limits": {
                 "total_range": [
                     {
@@ -785,6 +874,11 @@
             "category": "Environment",
             "subset": "Walk",
             "parameter": "Walk Score",
+            "related_conditions": [
+                "alzheimers",
+                "dementia",
+                "depression"
+            ],
             "score_limits": {
                 "total_range": [
                     {
@@ -843,6 +937,13 @@
             "category": "Environment",
             "subset": "Air",
             "parameter": "AQ Score",
+            "related_conditions": [
+                "alzheimers",
+                "dementia",
+                "depression",
+                "migraine",
+                "stroke"
+            ],
             "score_limits": {
                 "total_range": [
                     {
@@ -877,6 +978,12 @@
             "category": "Environment",
             "subset": "Crime",
             "parameter": "Crime Score",
+            "related_conditions": [
+                "alzheimers",
+                "dementia",
+                "depression",
+                "stroke"
+            ],
             "score_limits": {
                 "total_range": [
                     {
@@ -911,6 +1018,14 @@
             "category": "Environment",
             "subset": "Trauma",
             "parameter": "Trauma",
+            "related_conditions": [
+                "alzheimers",
+                "dementia",
+                "depression",
+                "migraine",
+                "neuroinflammation",
+                "stroke"
+            ],
             "score_limits": {
                 "total_range": [
                     {
@@ -945,6 +1060,13 @@
             "category": "Environment",
             "subset": "Stress",
             "parameter": "Stress",
+            "related_conditions": [
+                "alzheimers",
+                "dementia",
+                "depression",
+                "migraine",
+                "stroke"
+            ],
             "score_limits": {
                 "total_range": [
                     {
@@ -979,6 +1101,12 @@
             "category": "Environment",
             "subset": "Race",
             "parameter": "Race",
+            "related_conditions": [
+                "alzheimers",
+                "dementia",
+                "depression",
+                "stroke"
+            ],
             "score_limits": {
                 "total_range": [
                     {
@@ -1013,6 +1141,12 @@
             "category": "Environment",
             "subset": "Ethnicity",
             "parameter": "Ethnicity",
+            "related_conditions": [
+                "alzheimers",
+                "dementia",
+                "depression",
+                "stroke"
+            ],
             "score_limits": {
                 "total_range": [
                     {
@@ -1047,6 +1181,12 @@
             "category": "Environment",
             "subset": "Income",
             "parameter": "Financial Strain",
+            "related_conditions": [
+                "alzheimers",
+                "dementia",
+                "depression",
+                "stroke"
+            ],
             "score_limits": {
                 "total_range": [
                     {
@@ -1081,6 +1221,13 @@
             "category": "Body",
             "subset": "BMI",
             "parameter": "BMI",
+            "related_conditions": [
+                "alzheimers",
+                "dementia",
+                "depression",
+                "neuroinflammation",
+                "stroke"
+            ],
             "score_limits": {
                 "total_range": [
                     {
@@ -1175,6 +1322,12 @@
             "category": "Body",
             "subset": "A1C",
             "parameter": "A1C",
+            "related_conditions": [
+                "alzheimers",
+                "dementia",
+                "depression",
+                "stroke"
+            ],
             "score_limits": {
                 "total_range": [
                     {
@@ -1233,6 +1386,12 @@
             "category": "Body",
             "subset": "Cholesterol",
             "parameter": "LDL",
+            "related_conditions": [
+                "alzheimers",
+                "dementia",
+                "depression",
+                "stroke"
+            ],
             "score_limits": {
                 "total_range": [
                     {
@@ -1315,6 +1474,12 @@
             "category": "Body",
             "subset": "Cholesterol",
             "parameter": "HDL",
+            "related_conditions": [
+                "alzheimers",
+                "dementia",
+                "depression",
+                "stroke"
+            ],
             "score_limits": {
                 "total_range": [
                     {
@@ -1373,6 +1538,12 @@
             "category": "Body",
             "subset": "Cholesterol",
             "parameter": "Triglycerides",
+            "related_conditions": [
+                "alzheimers",
+                "dementia",
+                "depression",
+                "stroke"
+            ],
             "score_limits": {
                 "total_range": [
                     {
@@ -1419,6 +1590,12 @@
             "category": "Body",
             "subset": "Blood Pressure",
             "parameter": "Systolic BP",
+            "related_conditions": [
+                "alzheimers",
+                "dementia",
+                "depression",
+                "stroke"
+            ],
             "score_limits": {
                 "total_range": [
                     {
@@ -1501,6 +1678,12 @@
             "category": "Body",
             "subset": "Blood Pressure",
             "parameter": "Diastolic Bp",
+            "related_conditions": [
+                "alzheimers",
+                "dementia",
+                "depression",
+                "stroke"
+            ],
             "score_limits": {
                 "total_range": [
                     {
@@ -1571,6 +1754,12 @@
             "category": "Functional Tests",
             "subset": "Gait",
             "parameter": "Gait Score",
+            "related_conditions": [
+                "alzheimers",
+                "dementia",
+                "neuroinflammation",
+                "stroke"
+            ],
             "score_limits": {
                 "total_range": [
                     {
@@ -1605,6 +1794,11 @@
             "category": "Functional Tests",
             "subset": "Tabcat",
             "parameter": "Cognition",
+            "related_conditions": [
+                "alzheimers",
+                "dementia",
+                "neuroinflammation"
+            ],
             "score_limits": {
                 "total_range": [
                     {
@@ -1663,6 +1857,11 @@
             "category": "Functional Tests",
             "subset": "Vision",
             "parameter": "Vision",
+            "related_conditions": [
+                "alzheimers",
+                "dementia",
+                "neuroinflammation"
+            ],
             "score_limits": {
                 "total_range": [
                     {
@@ -1697,6 +1896,11 @@
             "category": "Functional Tests",
             "subset": "Hearing",
             "parameter": "Hearing Score",
+            "related_conditions": [
+                "alzheimers",
+                "dementia",
+                "neuroinflammation"
+            ],
             "score_limits": {
                 "total_range": [
                     {
@@ -1731,6 +1935,7 @@
             "category": "Functional Tests",
             "subset": "Other",
             "parameter": "Misc",
+            "related_conditions": [],
             "score_limits": {
                 "total_range": [
                     {
@@ -1757,6 +1962,145 @@
             },
             "data_type": "value",
             "data_source": "tbd",
+            "additional_text": ""
+        },
+        "oc_use": {
+            "value": "Yes",
+            "display_name": "Oral Contraceptive",
+            "category": "Body",
+            "subset": "Gender",
+            "parameter": "Oral Contraceptive",
+            "related_conditions": [
+                "depression",
+                "migraine",
+                "stroke"
+            ],
+            "score_limits": {
+                "total_range": [
+                    {
+                        "min": "",
+                        "max": ""
+                    }
+                ],
+                "male": [
+                    {
+                        "min": "",
+                        "max": "",
+                        "impact_score": 0,
+                        "description": "TBD"
+                    }
+                ],
+                "female": [
+                    {
+                        "min": "Yes",
+                        "max": "Yes",
+                        "impact_score": 1,
+                        "description": "TBD"
+                    },
+                    {
+                        "min": "No",
+                        "max": "No",
+                        "impact_score": 0,
+                        "description": "TBD"
+                    }
+                ]
+            },
+            "data_type": "text",
+            "data_source": "ehr",
+            "additional_text": ""
+        },
+        "hx_of_preeclampsia": {
+            "value": "Yes",
+            "display_name": "History of Preeclampsia",
+            "category": "Body",
+            "subset": "Gender",
+            "parameter": "Preeclampsia",
+            "related_conditions": [
+                "migraine",
+                "stroke"
+            ],
+            "score_limits": {
+                "total_range": [
+                    {
+                        "min": "",
+                        "max": ""
+                    }
+                ],
+                "male": [
+                    {
+                        "min": "",
+                        "max": "",
+                        "impact_score": 0,
+                        "description": "TBD"
+                    }
+                ],
+                "female": [
+                    {
+                        "min": "Yes",
+                        "max": "Yes",
+                        "impact_score": 1,
+                        "description": "TBD"
+                    },
+                    {
+                        "min": "No",
+                        "max": "No",
+                        "impact_score": 0,
+                        "description": "TBD"
+                    }
+                ]
+            },
+            "data_type": "text",
+            "data_source": "ehr",
+            "additional_text": ""
+        },
+        "gender": {
+            "value": "female",
+            "display_name": "Gender",
+            "category": "Body",
+            "subset": "Gender",
+            "parameter": "Gender",
+            "related_conditions": [
+                "migraine",
+                "neuroinflammation"
+            ],
+            "score_limits": {
+                "total_range": [
+                    {
+                        "min": "",
+                        "max": ""
+                    }
+                ],
+                "male": [
+                    {
+                        "min": "female",
+                        "max": "female",
+                        "impact_score": 1,
+                        "description": "TBD"
+                    },
+                    {
+                        "min": "male",
+                        "max": "male",
+                        "impact_score": 0,
+                        "description": "TBD"
+                    }
+                ],
+                "female": [
+                    {
+                        "min": "female",
+                        "max": "female",
+                        "impact_score": 1,
+                        "description": "TBD"
+                    },
+                    {
+                        "min": "male",
+                        "max": "male",
+                        "impact_score": 0,
+                        "description": "TBD"
+                    }
+                ]
+            },
+            "data_type": "text",
+            "data_source": "ehr",
             "additional_text": ""
         }
     }

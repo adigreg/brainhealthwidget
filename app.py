@@ -55,14 +55,32 @@ def transform_to_flare(data):
     subset_dict = {}
     gender = data["gender"]
     for key, item in data["brainhealth"].items():
+        # Category Level... Category to Subset or Sub Category
         category = item["category"]
+        # Subset Level -> Children
         subset = item["subset"]
         name = item["display_name"]
         
         if category not in category_dict:
             category_dict[category] = {"name": category, "children": []}
         if subset not in [val["name"] for val in category_dict[category]["children"]]:
-            category_dict[category]["children"].append({"name": subset, "children": []})
+            if subset == item["parameter"]:
+                category_dict[category]["children"].append({
+                "key": key,
+                "name": item["display_name"] if item["display_name"] != "" else item["parameter"],
+                "value": item["value"],
+                "min": -1 if item["data_type"] != "value" else item["score_limits"]["total_range"][0]["min"],
+                "max": -1 if item["data_type"] != "value" else item["score_limits"]["total_range"][0]["max"],
+                "good_min": good_range["min"],
+                "good_max": good_range["max"],
+                "data_source": item["data_source"],
+                "impact_score": impact_score,
+                "description": description,
+                "size": 1,
+                "related_conditions": item["related_conditions"] if "related_conditions" in item.keys() else [],
+            })
+            else:
+                category_dict[category]["children"].append({"name": subset, "children": []})
         
         if subset not in subset_dict:
             subset_dict[subset] = {"name": subset, "children": []}
@@ -81,13 +99,14 @@ def transform_to_flare(data):
                 "impact_score": impact_score,
                 "description": description,
                 "size": 1,
-                "related_conditions": ["Stroke","Dementia","Depression"] if key == "gene_ancestry" else [],
+                "related_conditions": item["related_conditions"] if "related_conditions" in item.keys() else [],
             })
     
     for k,category_data in category_dict.items():
         for subset_object in category_dict[k]["children"]:
-            for subset_data in subset_dict[subset_object["name"]]["children"]:
-                subset_object["children"].append(subset_data)
+            if subset_object["name"] in subset_dict.keys() and "children" in subset_object.keys():
+                for subset_data in subset_dict[subset_object["name"]]["children"]:
+                    subset_object["children"].append(subset_data)
     
     for category_final_data in category_dict.values():
         flare["children"].append(category_final_data)
