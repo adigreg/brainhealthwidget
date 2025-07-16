@@ -9,8 +9,8 @@ const flareJson = patientFlareData;
 class wheel {
     constructor(data){
         this.data = data;
-        this.width = 900;
-        this.height = this.width;
+        this.width = 1000;
+        this.height = 1000;
         this.radius = this.width / 8
         this.parent = null;
         this.svg = null;
@@ -53,7 +53,8 @@ class wheel {
     }
     
     labelTransform(d) {
-        if(d.parent && d.parent.data.name == "brainhealth"){
+        console.log(d.data.name)
+        if(["Functional Tests","Genetics","Body","Behavior","Environment"].includes(d.data.name)){
             const x = (d.x0 + d.x1) / 2 * 180 / Math.PI;
             const y = (d.y0 + d.y1) / 2 * this.radius;
             return `rotate(${x - 90}) translate(${y},0) rotate(${90})`;
@@ -147,9 +148,9 @@ class wheel {
             })
             .attr("font-size",d => {
                 if(d.parent && d.parent.data.name == "brainhealth"){
-                    return "16px"
+                    return "18px"
                 }
-                return "10px";
+                return "12px";
             })
             .attr("fill-opacity", d => +this.labelVisible(d.current))
             .attr("transform", d => this.labelTransform(d.current))
@@ -165,7 +166,7 @@ class wheel {
         this.centerText = this.svg.append("text")
             .attr("text-anchor", "middle")
             .attr("dy", "0.35em")
-            .style("font-size", "16px")
+            .style("font-size", "18px")
             .style("pointer-events", "none")
             .text(this.root.data.name == "brainhealth" ? "" : this.root.data.name);
         var elem = document.getElementById("svg");
@@ -176,13 +177,16 @@ class wheel {
     clicked(event, p) {
         this.parent.datum(p.parent || this.root);
         this.centerText.text(p.data.name == "brainhealth" ? "" : p.data.name);
-        this.root.each(d => 
+        this.root.each(d => {
             d.target = {
-            x0: Math.max(0, Math.min(1, (d.x0 - p.x0) / (p.x1 - p.x0))) * 2 * Math.PI,
-            x1: Math.max(0, Math.min(1, (d.x1 - p.x0) / (p.x1 - p.x0))) * 2 * Math.PI,
-            y0: Math.max(0, d.y0 - p.depth),
-            y1: Math.max(0, d.y1 - p.depth)
-        });
+              x0: Math.max(0, Math.min(1, (d.x0 - p.x0) / (p.x1 - p.x0))) * 2 * Math.PI,
+              x1: Math.max(0, Math.min(1, (d.x1 - p.x0) / (p.x1 - p.x0))) * 2 * Math.PI,
+              y0: Math.max(0, d.y0 - p.depth),
+              y1: Math.max(0, d.y1 - p.depth),
+              // 👇 Add these to preserve logic
+              data: d.data
+            };
+          });
 
         const t = this.svg.transition().duration(750);
         // Transition the data on all arcs, even the ones that aren’t visible,
