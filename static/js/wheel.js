@@ -154,7 +154,41 @@ class wheel {
             })
             .attr("fill-opacity", d => +this.labelVisible(d.current))
             .attr("transform", d => this.labelTransform(d.current))
-            .text(d => d.data.name);
+            this.label = this.svg.append("g")
+    .attr("pointer-events", "none")
+    .attr("text-anchor", "middle")
+    .style("user-select", "none")
+  .selectAll("text")
+  .data(this.root.descendants().slice(1))
+  .join("text")
+    .attr("dy", "0.35em")
+    .attr("fill",d => d.data.value === "" ? "grey" : "black")
+    .attr("font-size",d => d.parent && d.parent.data.name === "brainhealth" ? "18px" : "12px")
+    .attr("fill-opacity", d => +this.labelVisible(d.current))
+    .attr("transform", d => this.labelTransform(d.current))
+    .each(function(d) {
+        const text = d3.select(this);
+        const words = d.data.name.split(/\s+/);
+        let line = [];
+        words.forEach((word, i) => {
+          const tentative = [...line, word].join(" ");
+          if (tentative.length > 20) {
+            text.append("tspan")
+                .attr("x", 0)
+                .attr("dy", `${line.length === 0 ? 0 : 1.1}em`)
+                .text(line.join(" "));
+            line = [word];
+          } else {
+            line.push(word);
+          }
+        });
+        if (line.length > 0) {
+          text.append("tspan")
+              .attr("x", 0)
+              .attr("dy", `${line.length === 0 ? 0 : 1.1}em`)
+              .text(line.join(" "));
+        }
+    });
 
         this.parent = this.svg.append("circle")
             .datum(this.root)
